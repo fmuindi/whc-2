@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Harvest Church — Miracles · Breakthrough · Revival</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --deep: #111216;
+    --card: #16181e;
+    --border: rgba(255,255,255,0.07);
+    --gold: #c9963a;
+    --gold-light: #e8b85a;
+    --gold-dim: rgba(201,150,58,0.15);
+    --white: #f5f2ed;
+    --muted: rgba(245,242,237,0.55);
+    --red: #c0392b;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Barlow', sans-serif;
+    --font-cond: 'Barlow Condensed', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── UTILITY ─── */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+  .tag {
+    display: inline-block;
+    font-family: var(--font-cond);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-cond);
+    font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    text-decoration: none; padding: 14px 32px; border: none; cursor: pointer;
+    transition: all 0.3s ease; position: relative; overflow: hidden;
+  }
+  .btn-primary {
+    background: var(--gold); color: #0a0a0a;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,150,58,0.4); }
+  .btn-outline {
+    background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35);
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: var(--gold); padding: 0;
+    font-family: var(--font-cond); font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer;
+    transition: gap 0.3s ease, opacity 0.3s ease;
+  }
+  .btn-ghost:hover { gap: 14px; opacity: 0.8; }
+  .btn-ghost .arrow { font-size: 16px; }
+  .section-label {
+    font-family: var(--font-cond); font-size: 11px; font-weight: 700;
+    letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
+  }
+  .section-label::before {
+    content: ''; display: block; width: 32px; height: 1.5px; background: var(--gold);
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px;
+    transition: background 0.4s ease, backdrop-filter 0.4s ease;
+  }
+  nav.scrolled {
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 38px; height: 38px;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 18px; font-weight: 900; color: #0a0a0a;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
+  .nav-logo-text {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .nav-logo-text .top {
+    font-family: var(--font-cond); font-size: 15px; font-weight: 800;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--white);
+  }
+  .nav-logo-text .sub {
+    font-family: var(--font-body); font-size: 10px; font-weight: 400;
+    letter-spacing: 1px; color: var(--muted); text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 40px; list-style: none;
+  }
+  .nav-links a {
+    font-family: var(--font-cond); font-size: 13px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-actions { display: flex; align-items: center; gap: 16px; }
+  .nav-live {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-cond); font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--white);
+    text-decoration: none;
+    padding: 9px 20px;
+    border: 1.5px solid var(--red);
+    transition: all 0.3s;
+  }
+  .nav-live:hover { background: var(--red); }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--red);
+    animation: pulse-dot 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+  .nav-give {
+    font-family: var(--font-cond); font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a;
+    background: var(--gold); padding: 10px 22px;
+    text-decoration: none; transition: background 0.3s;
+  }
+  .nav-give:hover { background: var(--gold-light); }
+
+ /* ─── HERO ─── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 700px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+/* Video wrapper */
+.hero-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  display: block;
+  pointer-events: none;
+}
+
+/* Overlay for readability */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(to right, rgba(10, 10, 10, 0.86) 0%, rgba(10, 10, 10, 0.58) 42%, rgba(10, 10, 10, 0.22) 100%),
+    linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.38) 45%, rgba(10, 10, 10, 0.16) 100%);
+}
+
+/* Optional warm glow for church-style cinematic feel */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 75% 35%,
+    rgba(201, 150, 58, 0.16) 0%,
+    rgba(201, 150, 58, 0.06) 22%,
+    transparent 58%
+  );
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  padding: 0 80px 100px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-cond);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fade-up 0.8s 0.2s forwards;
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1.5px;
+  background: var(--gold);
+  display: block;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 84px);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--white);
+  margin-bottom: 12px;
+  opacity: 0;
+  animation: fade-up 0.9s 0.35s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+
+.hero-sub {
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 300;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 20px 0 40px;
+  opacity: 0;
+  animation: fade-up 1s 0.5s forwards;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fade-up 1s 0.65s forwards;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-cond);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: 0;
+  animation: fade-in 1s 1.2s forwards;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scroll-drop 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-drop {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 991px) {
+  .hero {
+    min-height: 90vh;
+    min-height: 640px;
+  }
+
+  .hero-content {
+    max-width: 680px;
+    padding: 0 48px 88px;
+  }
+
+  .hero-bg {
+    background:
+      linear-gradient(to right, rgba(10, 10, 10, 0.84) 0%, rgba(10, 10, 10, 0.48) 60%, rgba(10, 10, 10, 0.24) 100%),
+      linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.34) 48%, rgba(10, 10, 10, 0.12) 100%);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 100svh;
+    min-height: 680px;
+    align-items: flex-end;
+  }
+
+  .hero-video {
+    width: auto;
+    min-width: 100%;
+    height: 100%;
+    min-height: 100%;
+  }
+
+  .hero-bg {
+    background:
+      linear-gradient(to top, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.62) 42%, rgba(10, 10, 10, 0.28) 100%),
+      linear-gradient(to right, rgba(10, 10, 10, 0.76) 0%, rgba(10, 10, 10, 0.2) 100%);
+  }
+
+  .hero-content {
+    max-width: 100%;
+    padding: 0 24px 88px;
+  }
+
+  .hero-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+
+  .hero-title {
+    font-size: clamp(42px, 11vw, 64px);
+    line-height: 0.98;
+    margin-bottom: 14px;
+  }
+
+  .hero-sub {
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.65;
+    margin: 18px 0 30px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-scroll {
+    bottom: 22px;
+  }
+
+  .scroll-line {
+    height: 36px;
+  }
+}
+
+@media (max-width: 479px) {
+  .hero {
+    min-height: 100svh;
+    min-height: 620px;
+  }
+
+  .hero-content {
+    padding: 0 18px 76px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 11.5vw, 52px);
+  }
+
+  .hero-sub {
+    font-size: 14px;
+  }
+
+  .hero-eyebrow::before {
+    width: 22px;
+  }
+
+  .hero-scroll {
+    display: none;
+  }
+}
+
+/* Optional accessibility improvement */
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow,
+  .hero-title,
+  .hero-sub,
+  .hero-actions,
+  .hero-scroll {
+    opacity: 1;
+    animation: none;
+  }
+
+  .scroll-line {
+    animation: none;
+  }
+}
+  /* ─── SERVICE TIMES TICKER ─── */
+  .times-bar {
+    background: var(--gold);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+  .times-inner {
+    display: flex; align-items: center; gap: 60px;
+    animation: ticker 30s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+  .times-item {
+    display: flex; align-items: center; gap: 16px;
+    font-family: var(--font-cond); font-size: 13px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a;
+  }
+  .times-item .sep { opacity: 0.4; font-size: 18px; }
+  @keyframes ticker {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ─── ABOUT STRIP ─── */
+  .about-strip {
+    padding: 100px 0;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-main {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #1c1408 0%, #0d1520 100%);
+    position: relative; overflow: hidden;
+  }
+  .about-img-main::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 30% 40%, rgba(201,150,58,0.15) 0%, transparent 60%),
+      linear-gradient(135deg, rgba(201,150,58,0.05) 0%, transparent 100%);
+  }
+  .about-img-main .placeholder-icon {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    font-size: 64px; opacity: 0.08;
+  }
+  .about-img-accent {
+    position: absolute; bottom: -32px; right: -32px;
+    width: 200px; aspect-ratio: 1;
+    background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    padding: 28px;
+  }
+  .about-img-accent .stat { text-align: center; }
+  .about-img-accent .stat-num {
+    font-family: var(--font-display); font-size: 42px; font-weight: 900; color: #0a0a0a;
+    line-height: 1;
+  }
+  .about-img-accent .stat-label {
+    font-family: var(--font-cond); font-size: 11px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.65);
+    margin-top: 6px; line-height: 1.3;
+  }
+  .about-text h2 {
+    font-family: var(--font-display); font-size: clamp(34px, 3.5vw, 52px); font-weight: 900;
+    line-height: 1.1; margin-bottom: 24px; color: var(--white);
+  }
+  .about-text h2 em { font-style: italic; color: var(--gold); }
+  .about-text p {
+    font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 16px;
+  }
+  .about-links { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
+
+  /* ─── SERMONS ─── */
+  .sermons { padding: 100px 0; background: var(--deep); }
+  .section-header {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 56px;
+  }
+  .section-header h2 {
+    font-family: var(--font-display); font-size: clamp(32px, 3vw, 48px); font-weight: 900;
+    line-height: 1.1; color: var(--white); max-width: 480px;
+  }
+  .section-header h2 em { font-style: italic; color: var(--gold); }
+  .sermons-grid {
+    display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 2px;
+  }
+  .sermon-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    background: var(--card);
+  }
+  .sermon-card:first-child { grid-row: span 2; }
+  .sermon-thumb {
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #0d1520, #1a1a2e);
+    position: relative;
+  }
+  .sermon-card:first-child .sermon-thumb { aspect-ratio: unset; height: 100%; min-height: 320px; }
+  .sermon-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: 
+      radial-gradient(ellipse at 40% 40%, rgba(201,150,58,0.12) 0%, transparent 60%),
+      linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+  }
+  .play-btn {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 52px; height: 52px; border-radius: 50%;
+    background: rgba(201,150,58,0.9); border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2; transition: transform 0.3s, background 0.3s;
+  }
+  .sermon-card:first-child .play-btn { width: 72px; height: 72px; }
+  .play-btn::after {
+    content: '';
+    border-style: solid;
+    border-width: 9px 0 9px 18px;
+    border-color: transparent transparent transparent #0a0a0a;
+    margin-left: 4px;
+  }
+  .sermon-card:first-child .play-btn::after {
+    border-width: 12px 0 12px 24px;
+  }
+  .play-btn:hover { transform: translate(-50%,-50%) scale(1.1); background: var(--gold-light); }
+  .sermon-info {
+    padding: 20px 24px 24px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    transition: background 0.3s;
+  }
+  .sermon-card:hover .sermon-info { background: #1e2028; }
+  .sermon-series {
+    font-family: var(--font-cond); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
+  }
+  .sermon-title {
+    font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--white);
+    line-height: 1.3; margin-bottom: 8px;
+  }
+  .sermon-card:first-child .sermon-title { font-size: 26px; }
+  .sermon-meta {
+    font-size: 13px; color: var(--muted); display: flex; gap: 16px;
+  }
+
+  /* ─── EVENTS ─── */
+  .events { padding: 100px 0; }
+  .events-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    margin-top: 56px;
+  }
+  .event-card {
+    background: var(--card); border: 1px solid var(--border);
+    display: flex; flex-direction: column;
+    transition: transform 0.3s, border-color 0.3s;
+    text-decoration: none; color: inherit;
+  }
+  .event-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+  .event-img {
+    aspect-ratio: 3/2; position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #1a0d08, #0d1520);
+  }
+  .event-img::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);
+  }
+  .event-date-badge {
+    position: absolute; top: 16px; left: 16px; z-index: 1;
+    background: var(--gold); padding: 8px 14px; text-align: center;
+  }
+  .event-date-badge .day {
+    font-family: var(--font-display); font-size: 22px; font-weight: 900; color: #0a0a0a;
+    line-height: 1;
+  }
+  .event-date-badge .month {
+    font-family: var(--font-cond); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.7);
+  }
+  .event-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+  .event-tag {
+    font-family: var(--font-cond); font-size: 10px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+  }
+  .event-name {
+    font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--white);
+    line-height: 1.3; margin-bottom: 10px;
+  }
+  .event-details {
+    font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 20px;
+  }
+
+  /* ─── VISIT ─── */
+  .visit { padding: 100px 0; background: var(--deep); }
+  .visit-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .visit-info h2 {
+    font-family: var(--font-display); font-size: clamp(36px, 3.5vw, 54px); font-weight: 900;
+    line-height: 1.1; margin-bottom: 24px;
+  }
+  .visit-info h2 em { font-style: italic; color: var(--gold); }
+  .visit-info p { font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 40px; }
+  .visit-items { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
+  .visit-item {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 24px; background: var(--card); border: 1px solid var(--border);
+    transition: border-color 0.3s;
+  }
+  .visit-item:hover { border-color: var(--gold-dim); }
+  .visit-icon {
+    width: 48px; height: 48px; background: var(--gold-dim); border: 1px solid rgba(201,150,58,0.2);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    font-size: 20px;
+  }
+  .visit-item h4 {
+    font-family: var(--font-cond); font-size: 14px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 4px;
+  }
+  .visit-item p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
+  .visit-map {
+    position: relative; overflow: hidden;
+  }
+  .map-placeholder {
+    width: 100%; aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #0d1520, #111216);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; border: 1px solid var(--border);
+  }
+  .map-pin { font-size: 48px; opacity: 0.4; }
+  .map-address {
+    text-align: center;
+    font-family: var(--font-cond); font-size: 14px; font-weight: 600;
+    letter-spacing: 1px; color: var(--muted);
+  }
+  .map-address strong { display: block; color: var(--gold); font-size: 16px; margin-bottom: 4px; }
+
+  /* ─── GIVE ─── */
+  .give {
+    padding: 120px 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(201,150,58,0.12) 0%, transparent 60%),
+      var(--black);
+    text-align: center;
+  }
+  .give h2 {
+    font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); font-weight: 900;
+    line-height: 1.05; color: var(--white); margin-bottom: 24px;
+  }
+  .give h2 em { font-style: italic; color: var(--gold); }
+  .give p {
+    font-size: 17px; line-height: 1.8; color: var(--muted);
+    max-width: 600px; margin: 0 auto 48px;
+  }
+  .give-options {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  }
+  .give-card {
+    background: var(--card); border: 1px solid var(--border);
+    padding: 36px 40px; min-width: 220px; text-align: center;
+    cursor: pointer; transition: all 0.3s;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; align-items: center; gap: 12px;
+  }
+  .give-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .give-card .icon { font-size: 32px; }
+  .give-card h4 {
+    font-family: var(--font-cond); font-size: 14px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--white);
+  }
+  .give-card p { font-size: 13px; color: var(--muted); margin: 0; }
+
+  /* ─── CONNECT ─── */
+  .connect { padding: 100px 0; background: var(--deep); }
+  .connect-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 56px;
+  }
+  .connect-card {
+    position: relative; overflow: hidden; cursor: pointer;
+    padding: 60px 48px; background: var(--card);
+    text-decoration: none; color: inherit;
+    transition: background 0.3s;
+  }
+  .connect-card:hover { background: #1a1c24; }
+  .connect-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--gold); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .connect-card:hover::before { transform: scaleX(1); }
+  .connect-num {
+    font-family: var(--font-display); font-size: 80px; font-weight: 900;
+    color: rgba(255,255,255,0.04); line-height: 1;
+    position: absolute; top: 16px; right: 32px;
+  }
+  .connect-card h3 {
+    font-family: var(--font-display); font-size: 28px; font-weight: 700;
+    color: var(--white); margin-bottom: 12px; position: relative;
+  }
+  .connect-card p {
+    font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 340px; margin-bottom: 28px;
+  }
+
+  /* ─── PASTOR ─── */
+  .pastor { padding: 100px 0; }
+  .pastor-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .pastor-img {
+    position: relative;
+  }
+  .pastor-photo {
+    width: 100%; aspect-ratio: 3/4;
+    background: linear-gradient(160deg, #1a0d08 0%, #0d1a24 100%);
+    position: relative; overflow: hidden;
+  }
+  .pastor-photo::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 40% 30%, rgba(201,150,58,0.18) 0%, transparent 55%);
+  }
+  .pastor-photo .silhouette {
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    font-size: 200px; opacity: 0.07;
+  }
+  .pastor-quote-accent {
+    position: absolute; bottom: -24px; right: -24px;
+    background: var(--gold); padding: 28px 32px;
+    max-width: 240px;
+  }
+  .pastor-quote-accent p {
+    font-family: var(--font-display); font-style: italic; font-size: 15px;
+    font-weight: 700; color: #0a0a0a; line-height: 1.4; margin: 0;
+  }
+  .pastor-text .section-label { margin-bottom: 28px; }
+  .pastor-text h2 {
+    font-family: var(--font-display); font-size: clamp(34px, 3.5vw, 52px); font-weight: 900;
+    line-height: 1.1; margin-bottom: 8px;
+  }
+  .pastor-name {
+    font-family: var(--font-cond); font-size: 14px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
+  }
+  .pastor-text p {
+    font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 16px;
+  }
+  .pastor-stats {
+    display: flex; gap: 32px; margin: 36px 0;
+    padding: 28px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  }
+  .p-stat .num {
+    font-family: var(--font-display); font-size: 38px; font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .p-stat .lbl {
+    font-family: var(--font-cond); font-size: 11px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ─── CTA BANNER ─── */
+  .cta-banner {
+    padding: 100px 0;
+    background:
+      linear-gradient(135deg, rgba(201,150,58,0.12) 0%, rgba(201,150,58,0.03) 50%, transparent 100%),
+      var(--deep);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .cta-banner h2 {
+    font-family: var(--font-display); font-size: clamp(38px, 5vw, 68px); font-weight: 900;
+    line-height: 1.05; max-width: 800px; margin: 0 auto 32px; color: var(--white);
+  }
+  .cta-banner h2 em { font-style: italic; color: var(--gold); }
+  .cta-banner p {
+    font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto 48px;
+    line-height: 1.8;
+  }
+  .cta-times {
+    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .cta-time {
+    padding: 18px 32px; border: 1px solid var(--border);
+    background: var(--card);
+    font-family: var(--font-cond);
+  }
+  .cta-time .day {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+  .cta-time .time { font-size: 20px; font-weight: 700; color: var(--white); }
+  .cta-time .type { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--black); border-top: 1px solid var(--border);
+    padding: 80px 0 40px;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px;
+    margin-bottom: 60px;
+  }
+  .footer-brand p {
+    font-size: 14px; color: var(--muted); line-height: 1.8; margin: 20px 0 28px;
+    max-width: 280px;
+  }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-btn {
+    width: 38px; height: 38px; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; color: var(--muted); font-size: 14px;
+    transition: all 0.3s;
+  }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col h5 {
+    font-family: var(--font-cond); font-size: 11px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a {
+    font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    padding-top: 32px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom p { font-size: 12px; color: var(--muted); }
+  .footer-bottom a { color: var(--muted); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .sermons-grid { grid-template-columns: 1fr 1fr; }
+    .sermon-card:first-child { grid-column: span 2; grid-row: span 1; }
+    .sermon-card:first-child .sermon-thumb { min-height: 260px; height: auto; }
+    .about-strip, .visit-inner, .pastor-inner { grid-template-columns: 1fr; gap: 48px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .connect-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+    .hero-content { padding: 0 40px 80px; }
+  }
+  @media (max-width: 640px) {
+    .container { padding: 0 20px; }
+    .hero-content { padding: 0 24px 80px; }
+    .events-grid { grid-template-columns: 1fr; }
+    .give-options { flex-direction: column; align-items: center; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .sermons-grid { grid-template-columns: 1fr; }
+    .sermon-card:first-child { grid-column: span 1; }
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════ -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-mark">W</div>
+    <div class="nav-logo-text">
+      <span class="top">World Harvest</span>
+      <span class="sub">Church · Columbus, OH</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#sermons">Sermons</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#ministries">Ministries</a></li>
+    <li><a href="#visit">Visit</a></li>
+    <li><a href="#give">Give</a></li>
+  </ul>
+  <div class="nav-actions">
+    <a href="https://online.whc.life/" target="_blank" class="nav-live">
+      <span class="live-dot"></span>
+      Watch Live
+    </a>
+    <a href="#give" class="nav-give">Give</a>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-media">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      aria-label="Background video"
+    >
+      <source src="https://video.wixstatic.com/video/0c8444_de1c0ef5954e4c6393d50cd300bf3b32/1080p/mp4/file.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Welcome to The Harv</div>
+
+    <h1 class="hero-title">
+      Experience<br>
+      <em>the Power<br>of God</em>
+    </h1>
+
+    <p class="hero-sub">
+      Miracles. Breakthrough. Revival. A home for world-changers and a house of prayer and healing for the nations. Join Pastor Rod Parsley and the Harv family — on campus or online.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#visit" class="btn btn-primary">Plan Your Visit <span>→</span></a>
+      <a href="https://online.whc.live/" target="_blank" rel="noopener" class="btn btn-outline">Watch Live</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SERVICE TIMES TICKER
+═══════════════════════════════════════ -->
+<div class="times-bar">
+  <div class="times-inner">
+    <div class="times-item">
+      <span>📍</span>
+      <span>4595 Gender Rd., Canal Winchester, OH</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>Sundays — 10:00 AM ET</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>Wednesdays — 7:00 PM ET</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>In Person &amp; Online</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>Family-Friendly · Spirit-Filled · Multi-Generational</span>
+    </div>
+    <!-- duplicate for seamless loop -->
+    <div class="times-item">
+      <span>📍</span>
+      <span>4595 Gender Rd., Canal Winchester, OH</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>Sundays — 10:00 AM ET</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>Wednesdays — 7:00 PM ET</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>In Person &amp; Online</span>
+    </div>
+    <div class="times-item">
+      <span class="sep">·</span>
+      <span>Family-Friendly · Spirit-Filled · Multi-Generational</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-strip">
+
+      <div class="about-visual reveal">
+        <div class="about-img-main">
+          <div class="placeholder-icon">⛪</div>
+        </div>
+        <div class="about-img-accent">
+          <div class="stat">
+            <div class="stat-num">40+</div>
+            <div class="stat-label">Years of Breakthrough</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-text reveal reveal-delay-2">
+        <div class="section-label">A House of Miracles</div>
+        <h2>Built for <em>every generation</em></h2>
+        <p>For decades, World Harvest Church has been a place where faith meets power — and families find hope, healing, and purpose. We believe in the miracle-working God who changes lives today.</p>
+        <p>Whether you're seeking answers, community, or your next breakthrough, you'll find a family ready to welcome you — exactly as you are.</p>
+        <div class="about-links">
+          <a href="#" class="btn btn-primary">Our Pastor</a>
+          <a href="#" class="btn btn-outline">Our Beliefs</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SERMONS
+═══════════════════════════════════════ -->
+<section class="sermons" id="sermons">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Latest Messages</div>
+        <h2>Catch up on <em>this week's word</em></h2>
+      </div>
+      <a href="#" class="btn-ghost">View All Sermons <span class="arrow">→</span></a>
+    </div>
+
+    <div class="sermons-grid reveal">
+
+      <!-- Featured sermon -->
+      <div class="sermon-card">
+        <div class="sermon-thumb">
+          <button class="play-btn" aria-label="Play featured sermon"></button>
+        </div>
+        <div class="sermon-info">
+          <div class="sermon-series">Featured Series · Revival Fire</div>
+          <div class="sermon-title">When Heaven Opens: Miracles for the Faithful</div>
+          <div class="sermon-meta">
+            <span>Pastor Rod Parsley</span>
+            <span>·</span>
+            <span>Apr 13, 2025</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sermon 2 -->
+      <div class="sermon-card">
+        <div class="sermon-thumb">
+          <button class="play-btn" aria-label="Play sermon"></button>
+        </div>
+        <div class="sermon-info">
+          <div class="sermon-series">Sunday Service</div>
+          <div class="sermon-title">Faith That Moves Mountains</div>
+          <div class="sermon-meta"><span>Apr 6, 2025</span></div>
+        </div>
+      </div>
+
+      <!-- Sermon 3 -->
+      <div class="sermon-card">
+        <div class="sermon-thumb">
+          <button class="play-btn" aria-label="Play sermon"></button>
+        </div>
+        <div class="sermon-info">
+          <div class="sermon-series">Wednesday Night</div>
+          <div class="sermon-title">The Power of Prayer & Fasting</div>
+          <div class="sermon-meta"><span>Apr 9, 2025</span></div>
+        </div>
+      </div>
+
+      <!-- Sermon 4 -->
+      <div class="sermon-card">
+        <div class="sermon-thumb">
+          <button class="play-btn" aria-label="Play sermon"></button>
+        </div>
+        <div class="sermon-info">
+          <div class="sermon-series">Sunday Service</div>
+          <div class="sermon-title">Healing Is Your Covenant Right</div>
+          <div class="sermon-meta"><span>Mar 30, 2025</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     EVENTS
+═══════════════════════════════════════ -->
+<section class="events" id="events">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">What's Coming Up</div>
+        <h2>Be part of what <em>God is doing</em></h2>
+      </div>
+      <a href="https://whc.life/event-list" class="btn-ghost">All Events <span class="arrow">→</span></a>
+    </div>
+
+    <div class="events-grid">
+
+      <a href="https://whc.life/easter" class="event-card reveal">
+        <div class="event-img">
+          <div class="event-date-badge">
+            <div class="day">19</div>
+            <div class="month">Apr</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-tag">Holy Week</div>
+          <div class="event-name">Good Friday Service</div>
+          <div class="event-details">A powerful evening of reflection, worship, and the story of the cross. Doors open at 6:30 PM — all are welcome.</div>
+          <a href="#" class="btn-ghost">Register Free <span class="arrow">→</span></a>
+        </div>
+      </a>
+
+      <a href="https://whc.life/easter" class="event-card reveal reveal-delay-1">
+        <div class="event-img">
+          <div class="event-date-badge">
+            <div class="day">20</div>
+            <div class="month">Apr</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-tag">Easter Weekend</div>
+          <div class="event-name">Easter Sunday Celebration</div>
+          <div class="event-details">He is risen! Celebrate the resurrection with worship, a powerful message, and activities for the whole family.</div>
+          <a href="#" class="btn-ghost">Get Details <span class="arrow">→</span></a>
+        </div>
+      </a>
+
+      <a href="https://whc.life/easter" class="event-card reveal reveal-delay-2">
+        <div class="event-img">
+          <div class="event-date-badge">
+            <div class="day">27</div>
+            <div class="month">Apr</div>
+          </div>
+        </div>
+        <div class="event-body">
+          <div class="event-tag">Kids Ministry</div>
+          <div class="event-name">Kingdom Harvest Kids: Up, Up &amp; Away!</div>
+          <div class="event-details">A special Sunday morning experience for kids K–5th grade filled with games, praise, and teaching. Kids will love it!</div>
+          <a href="#" class="btn-ghost">Learn More <span class="arrow">→</span></a>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PASTOR
+═══════════════════════════════════════ -->
+<section class="pastor">
+  <div class="container">
+    <div class="pastor-inner">
+
+      <div class="pastor-img reveal">
+        <div class="pastor-photo">
+          <div class="silhouette">🧑‍💼</div>
+        </div>
+        <div class="pastor-quote-accent">
+          <p>"God is still in the miracle business — and your breakthrough is closer than you think."</p>
+        </div>
+      </div>
+
+      <div class="pastor-text reveal reveal-delay-2">
+        <div class="section-label">Meet Our Pastor</div>
+        <h2>Pastor Rod Parsley</h2>
+        <div class="pastor-name">Founder &amp; Senior Pastor</div>
+        <p>Rod Parsley is one of America's foremost authorities on Christian social action, communicating the Gospel to millions worldwide through his television program <em>Breakthrough</em>.</p>
+        <p>For over four decades, Pastor Parsley has led World Harvest Church with a bold message of hope, healing, and revival — impacting generations both locally and globally.</p>
+        <div class="pastor-stats">
+          <div class="p-stat">
+            <div class="num">40+</div>
+            <div class="lbl">Years in Ministry</div>
+          </div>
+          <div class="p-stat">
+            <div class="num">TV</div>
+            <div class="lbl">Global Broadcast</div>
+          </div>
+          <div class="p-stat">
+            <div class="num">1000s</div>
+            <div class="lbl">Lives Changed</div>
+          </div>
+        </div>
+        <a href="https://whc.life/our-pastor" class="btn btn-primary">Learn More</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONNECT / MINISTRIES
+═══════════════════════════════════════ -->
+<section class="connect" id="ministries">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Get Connected</div>
+        <h2>Find your place in <em>the family</em></h2>
+      </div>
+    </div>
+    <div class="connect-grid">
+
+      <a href="#" class="connect-card reveal">
+        <div class="connect-num">01</div>
+        <h3>Kingdom Harvest Kids</h3>
+        <p>Safe, fun, and inspiring environments where children experience God's love at every age and stage — from nursery through 5th grade.</p>
+        <span class="btn-ghost">Explore Kids Ministry <span class="arrow">→</span></span>
+      </a>
+
+      <a href="#" class="connect-card reveal reveal-delay-1">
+        <div class="connect-num">02</div>
+        <h3>Youth &amp; Young Adults</h3>
+        <p>A vibrant community for students and young adults to grow, belong, and discover God's extraordinary plan for their lives.</p>
+        <span class="btn-ghost">Connect with Youth <span class="arrow">→</span></span>
+      </a>
+
+      <a href="#" class="connect-card reveal reveal-delay-2">
+        <div class="connect-num">03</div>
+        <h3>Care &amp; Prayer Ministry</h3>
+        <p>You are not alone. Our prayer and care teams stand ready to believe with you for healing, restoration, and breakthrough.</p>
+        <span class="btn-ghost">Request Prayer <span class="arrow">→</span></span>
+      </a>
+
+      <a href="#" class="connect-card reveal reveal-delay-3">
+        <div class="connect-num">04</div>
+        <h3>Missions &amp; Outreach</h3>
+        <p>World Harvest Church is a house of prayer for all nations. Join our global mission to bring the Gospel to every corner of the earth.</p>
+        <span class="btn-ghost">Get Involved <span class="arrow">→</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PLAN YOUR VISIT
+═══════════════════════════════════════ -->
+<section class="visit" id="visit">
+  <div class="container">
+    <div class="visit-inner">
+
+      <div class="visit-info reveal">
+        <div class="section-label">First Time Here?</div>
+        <h2>We can't wait <em>to meet you</em></h2>
+        <p>Everything you need to know for your first Sunday — from parking to kids check-in. We promise: you'll feel right at home.</p>
+
+        <div class="visit-items">
+          <div class="visit-item">
+            <div class="visit-icon">📍</div>
+            <div>
+              <h4>Location</h4>
+              <p>4595 Gender Rd., Canal Winchester, OH 43110</p>
+            </div>
+          </div>
+          <div class="visit-item">
+            <div class="visit-icon">🕙</div>
+            <div>
+              <h4>Service Times</h4>
+              <p>Sundays 10:00 AM · Wednesdays 7:00 PM<br>Both in-person and livestreamed online</p>
+            </div>
+          </div>
+          <div class="visit-item">
+            <div class="visit-icon">👨‍👩‍👧‍👦</div>
+            <div>
+              <h4>Families Welcome</h4>
+              <p>Kids check-in is easy. Our Kingdom Harvest Kids rooms are fully staffed and secure.</p>
+            </div>
+          </div>
+          <div class="visit-item">
+            <div class="visit-icon">📞</div>
+            <div>
+              <h4>Questions?</h4>
+              <p>(614) 837-1990 · webmaster@whc.life</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="btn btn-primary">Plan Your Visit</a>
+      </div>
+
+      <div class="visit-map reveal reveal-delay-2">
+        <div class="map-placeholder">
+          <div class="map-pin">📍</div>
+          <div class="map-address">
+            <strong>World Harvest Church</strong>
+            4595 Gender Road<br>Canal Winchester, OH 43110
+          </div>
+          <a href="https://maps.google.com/?q=World+Harvest+Church+Canal+Winchester+OH" target="_blank" class="btn btn-outline" style="margin-top:8px">
+            Open in Maps →
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     GIVE
+═══════════════════════════════════════ -->
+<section class="give" id="give">
+  <div class="container">
+    <div class="section-label" style="justify-content:center">Generosity</div>
+    <h2 class="reveal">Your giving <em>changes lives</em><br>around the world</h2>
+    <p class="reveal reveal-delay-1">Every gift to World Harvest Church fuels local outreach, global missions, and the broadcast of the Gospel to millions. Thank you for partnering with us.</p>
+
+    <div class="give-options">
+      <a href="https://v4.whc.life/donate" class="give-card reveal">
+        <div class="icon">💳</div>
+        <h4>Give Online</h4>
+        <p>Secure, fast &amp; easy</p>
+      </a>
+      <a href="tel:6148371990" class="give-card reveal reveal-delay-1">
+        <div class="icon">📞</div>
+        <h4>Give by Phone</h4>
+        <p>(614) 837-1990</p>
+      </a>
+      <a href="#" class="give-card reveal reveal-delay-2">
+        <div class="icon">✉️</div>
+        <h4>Give by Mail</h4>
+        <p>4595 Gender Rd, OH</p>
+      </a>
+      <a href="#" class="give-card reveal reveal-delay-3">
+        <div class="icon">🔄</div>
+        <h4>Set Up Recurring</h4>
+        <p>Automatic monthly giving</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CTA BANNER
+═══════════════════════════════════════ -->
+<section class="cta-banner">
+  <div class="container">
+    <h2 class="reveal">Your <em>next breakthrough</em><br>starts this Sunday</h2>
+    <p class="reveal reveal-delay-1">No matter where you've been or what you're going through — there is a place for you at World Harvest Church. Come as you are. Leave changed.</p>
+
+    <div class="cta-times reveal reveal-delay-1">
+      <div class="cta-time">
+        <div class="day">Sunday</div>
+        <div class="time">10:00 AM ET</div>
+        <div class="type">In Person &amp; Online</div>
+      </div>
+      <div class="cta-time">
+        <div class="day">Wednesday</div>
+        <div class="time">7:00 PM ET</div>
+        <div class="type">In Person &amp; Online</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap" class="reveal reveal-delay-2">
+      <a href="#visit" class="btn btn-primary">Plan Your Visit</a>
+      <a href="https://online.whc.live/" target="_blank" class="btn btn-outline">Watch Online</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:12px">
+          <div class="nav-logo-mark">W</div>
+          <div class="nav-logo-text">
+            <span class="top">World Harvest</span>
+            <span class="sub">Church · Columbus, OH</span>
+          </div>
+        </a>
+        <p>A house of prayer and healing for the nations. Miracles · Breakthrough · Revival.</p>
+        <div class="footer-socials">
+          <a href="https://youtube.com/channel/rodparsley" target="_blank" class="social-btn" title="YouTube">▶</a>
+          <a href="http://facebook.com/rodparsley/" target="_blank" class="social-btn" title="Facebook">f</a>
+          <a href="https://x.com/RealRodParsley" target="_blank" class="social-btn" title="X">𝕏</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#">Plan Your Visit</a></li>
+          <li><a href="#">Service Times</a></li>
+          <li><a href="#">Parking &amp; Directions</a></li>
+          <li><a href="#">Kids Ministry</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Discover</h5>
+        <ul>
+          <li><a href="#">About WHC</a></li>
+          <li><a href="#">Our Pastor</a></li>
+          <li><a href="#">Our Beliefs</a></li>
+          <li><a href="#">Ministries</a></li>
+          <li><a href="#">Events</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Media &amp; More</h5>
+        <ul>
+          <li><a href="https://online.whc.live/">Watch Live</a></li>
+          <li><a href="#">Sermons &amp; Archive</a></li>
+          <li><a href="https://v4.whc.life/donate">Give Online</a></li>
+          <li><a href="#">Prayer Request</a></li>
+          <li><a href="https://whc.life/notifications">Notifications</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 World Harvest Church · All rights reserved · <a href="https://whc.life/privacy-policy">Privacy Policy</a></p>
+      <p>4595 Gender Road, Canal Winchester, Ohio · <a href="tel:6148371990">(614) 837-1990</a> · <a href="mailto:webmaster@whc.life">webmaster@whc.life</a></p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════ -->
+<script>
+  // Nav scroll effect
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth scroll for nav links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

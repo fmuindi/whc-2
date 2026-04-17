@@ -6,1166 +6,779 @@
 <title>World Harvest Church — Miracles · Breakthrough · Revival</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-  :root {
-    --black: #0a0a0a;
-    --deep: #111216;
-    --card: #16181e;
-    --border: rgba(255,255,255,0.07);
-    --gold: #c9963a;
-    --gold-light: #e8b85a;
-    --gold-dim: rgba(201,150,58,0.15);
-    --white: #f5f2ed;
-    --muted: rgba(245,242,237,0.55);
-    --red: #c0392b;
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body: 'Barlow', sans-serif;
-    --font-cond: 'Barlow Condensed', sans-serif;
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-weight: 400;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  /* ─── UTILITY ─── */
-  .container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
-  .tag {
-    display: inline-block;
-    font-family: var(--font-cond);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
-  }
-  .btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--font-cond);
-    font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-    text-decoration: none; padding: 14px 32px; border: none; cursor: pointer;
-    transition: all 0.3s ease; position: relative; overflow: hidden;
-  }
-  .btn-primary {
-    background: var(--gold); color: #0a0a0a;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,150,58,0.4); }
-  .btn-outline {
-    background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.35);
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-  .btn-ghost {
-    background: transparent; color: var(--gold); padding: 0;
-    font-family: var(--font-cond); font-size: 13px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
-    display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer;
-    transition: gap 0.3s ease, opacity 0.3s ease;
-  }
-  .btn-ghost:hover { gap: 14px; opacity: 0.8; }
-  .btn-ghost .arrow { font-size: 16px; }
-  .section-label {
-    font-family: var(--font-cond); font-size: 11px; font-weight: 700;
-    letter-spacing: 4px; text-transform: uppercase; color: var(--gold);
-    display: flex; align-items: center; gap: 12px; margin-bottom: 24px;
-  }
-  .section-label::before {
-    content: ''; display: block; width: 32px; height: 1.5px; background: var(--gold);
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 0 40px;
-    display: flex; align-items: center; justify-content: space-between;
-    height: 72px;
-    transition: background 0.4s ease, backdrop-filter 0.4s ease;
-  }
-  nav.scrolled {
-    background: rgba(10,10,10,0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-logo {
-    display: flex; align-items: center; gap: 12px;
-    text-decoration: none;
-  }
-  .nav-logo-mark {
-    width: 38px; height: 38px;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    font-family: var(--font-display); font-size: 18px; font-weight: 900; color: #0a0a0a;
-    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  }
-  .nav-logo-text {
-    display: flex; flex-direction: column; line-height: 1.1;
-  }
-  .nav-logo-text .top {
-    font-family: var(--font-cond); font-size: 15px; font-weight: 800;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--white);
-  }
-  .nav-logo-text .sub {
-    font-family: var(--font-body); font-size: 10px; font-weight: 400;
-    letter-spacing: 1px; color: var(--muted); text-transform: uppercase;
-  }
-  .nav-links {
-    display: flex; align-items: center; gap: 40px; list-style: none;
-  }
-  .nav-links a {
-    font-family: var(--font-cond); font-size: 13px; font-weight: 600;
-    letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
-    text-decoration: none; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--white); }
-  .nav-actions { display: flex; align-items: center; gap: 16px; }
-  .nav-live {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--font-cond); font-size: 12px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--white);
-    text-decoration: none;
-    padding: 9px 20px;
-    border: 1.5px solid var(--red);
-    transition: all 0.3s;
-  }
-  .nav-live:hover { background: var(--red); }
-  .live-dot {
-    width: 7px; height: 7px; border-radius: 50%; background: var(--red);
-    animation: pulse-dot 1.5s ease-in-out infinite;
-  }
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.7); }
-  }
-  .nav-give {
-    font-family: var(--font-cond); font-size: 12px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a;
-    background: var(--gold); padding: 10px 22px;
-    text-decoration: none; transition: background 0.3s;
-  }
-  .nav-give:hover { background: var(--gold-light); }
-
- /* ─── HERO ─── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  min-height: 700px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
-  overflow: hidden;
-  background: #0a0a0a;
+:root {
+  --black: #0a0a0a;
+  --deep: #100c18;
+  --card: #15111f;
+  --card2: #1a1428;
+  --border: rgba(255,255,255,0.08);
+  --purple: #573198;
+  --purple-light: #7b4fc4;
+  --purple-lighter: #9b6de0;
+  --purple-dim: rgba(87,49,152,0.18);
+  --purple-glow: rgba(87,49,152,0.35);
+  --white: #f5f2fd;
+  --muted: rgba(235,228,255,0.55);
+  --red: #c0392b;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-cond: 'Barlow Condensed', sans-serif;
+  --nav-h: 72px;
+  --sidebar-w: 320px;
 }
-
-/* Video wrapper */
-.hero-media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
-
-.hero-video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  display: block;
-  pointer-events: none;
-}
-
-/* Overlay for readability */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    linear-gradient(to right, rgba(10, 10, 10, 0.86) 0%, rgba(10, 10, 10, 0.58) 42%, rgba(10, 10, 10, 0.22) 100%),
-    linear-gradient(to top, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.38) 45%, rgba(10, 10, 10, 0.16) 100%);
-}
-
-/* Optional warm glow for church-style cinematic feel */
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse at 75% 35%,
-    rgba(201, 150, 58, 0.16) 0%,
-    rgba(201, 150, 58, 0.06) 22%,
-    transparent 58%
-  );
-  pointer-events: none;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 760px;
-  padding: 0 80px 100px;
-}
-
-.hero-eyebrow {
-  font-family: var(--font-cond);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  opacity: 0;
-  animation: fade-up 0.8s 0.2s forwards;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  width: 28px;
-  height: 1.5px;
-  background: var(--gold);
-  display: block;
-}
-
-.hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(48px, 6vw, 84px);
-  font-weight: 900;
-  line-height: 1;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
   color: var(--white);
-  margin-bottom: 12px;
-  opacity: 0;
-  animation: fade-up 0.9s 0.35s forwards;
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
+body.menu-open { overflow: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
 
-.hero-title em {
-  font-style: italic;
-  color: var(--gold);
-  display: block;
+/* ─── UTILITY ─── */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+.section-label {
+  font-family: var(--font-cond); font-size: 11px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase; color: var(--purple-lighter);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
 }
+.section-label::before { content:''; display:block; width:28px; height:1.5px; background:var(--purple-lighter); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-cond); font-size: 13px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; padding: 14px 32px; border: none; cursor: pointer;
+  transition: all 0.3s ease; text-decoration: none;
+}
+.btn-primary { background: var(--purple); color: #fff; }
+.btn-primary:hover { background: var(--purple-light); transform: translateY(-2px); box-shadow: 0 12px 40px var(--purple-glow); }
+.btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
+.btn-outline:hover { border-color: var(--purple-lighter); color: var(--purple-lighter); transform: translateY(-2px); }
+.btn-ghost {
+  background: transparent; color: var(--purple-lighter); padding: 0;
+  font-family: var(--font-cond); font-size: 13px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer;
+  transition: gap 0.3s ease, opacity 0.3s ease;
+}
+.btn-ghost:hover { gap: 14px; opacity: 0.75; }
 
+/* ─── SIDEBAR OVERLAY ─── */
+#overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+  z-index: 199; opacity: 0; pointer-events: none;
+  transition: opacity 0.35s ease;
+  backdrop-filter: blur(4px);
+}
+#overlay.active { opacity: 1; pointer-events: all; }
+
+/* ─── SIDEBAR NAV ─── */
+#sidebar {
+  position: fixed; top: 0; right: 0; bottom: 0;
+  width: var(--sidebar-w); max-width: 92vw;
+  background: #0e0b18; z-index: 200;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  display: flex; flex-direction: column;
+  border-left: 1px solid var(--border);
+}
+#sidebar.open { transform: translateX(0); }
+.sidebar-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 28px; border-bottom: 1px solid var(--border);
+}
+.sidebar-close {
+  background: none; border: none; color: var(--muted); font-size: 20px;
+  cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+  transition: color 0.2s;
+}
+.sidebar-close:hover { color: var(--white); }
+.sidebar-nav { flex: 1; overflow-y: auto; padding: 12px 0; }
+.sidebar-nav a {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 28px; font-family: var(--font-cond); font-size: 16px;
+  font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted); transition: all 0.2s; border-left: 3px solid transparent;
+}
+.sidebar-nav a:hover {
+  color: var(--white); background: var(--purple-dim); border-left-color: var(--purple-lighter);
+}
+.sidebar-nav a i { width: 20px; text-align: center; color: var(--purple-lighter); font-size: 14px; }
+.sidebar-footer {
+  padding: 24px 28px; border-top: 1px solid var(--border);
+}
+.sidebar-footer .btn { width: 100%; justify-content: center; margin-bottom: 12px; }
+.sidebar-socials { display: flex; gap: 12px; margin-top: 16px; }
+.sidebar-socials a {
+  width: 36px; height: 36px; border: 1px solid var(--border); display: flex;
+  align-items: center; justify-content: center; color: var(--muted); font-size: 14px;
+  transition: all 0.2s; border-radius: 2px;
+}
+.sidebar-socials a:hover { border-color: var(--purple-lighter); color: var(--purple-lighter); }
+
+/* ─── NAV ─── */
+nav#mainNav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h); padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease;
+}
+nav#mainNav.scrolled {
+  background: rgba(8,5,15,0.96);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo img { height: 48px; width: auto; object-fit: contain; }
+.nav-desktop-links {
+  display: flex; align-items: center; gap: 36px; list-style: none;
+}
+.nav-desktop-links a {
+  font-family: var(--font-cond); font-size: 13px; font-weight: 600;
+  letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
+  transition: color 0.2s;
+}
+.nav-desktop-links a:hover { color: var(--white); }
+.nav-right { display: flex; align-items: center; gap: 12px; }
+.nav-search-btn {
+  background: none; border: none; color: var(--muted); font-size: 16px;
+  cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center;
+  justify-content: center; transition: color 0.2s;
+}
+.nav-search-btn:hover { color: var(--purple-lighter); }
+.nav-live {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-cond); font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: var(--white);
+  padding: 9px 18px; border: 1.5px solid var(--red); transition: all 0.3s;
+}
+.nav-live:hover { background: var(--red); }
+.live-dot { width:7px; height:7px; border-radius:50%; background:var(--red); animation:pulse-dot 1.5s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.6)} }
+.nav-give {
+  font-family: var(--font-cond); font-size: 12px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; color: #fff;
+  background: var(--purple); padding: 10px 20px; transition: background 0.3s;
+}
+.nav-give:hover { background: var(--purple-light); }
+.nav-hamburger {
+  background: none; border: none; color: var(--white); font-size: 20px;
+  cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center;
+  justify-content: center; transition: color 0.2s;
+}
+.nav-hamburger:hover { color: var(--purple-lighter); }
+
+/* ─── SEARCH OVERLAY ─── */
+#searchOverlay {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 150;
+  background: rgba(8,5,15,0.97); backdrop-filter: blur(16px);
+  padding: 28px 32px; border-bottom: 1px solid var(--border);
+  transform: translateY(-100%); transition: transform 0.35s ease;
+  display: flex; align-items: center; gap: 16px;
+}
+#searchOverlay.open { transform: translateY(0); }
+#searchInput {
+  flex: 1; background: var(--card); border: 1.5px solid var(--border);
+  color: var(--white); font-family: var(--font-body); font-size: 16px;
+  padding: 14px 20px; outline: none; transition: border-color 0.3s;
+}
+#searchInput:focus { border-color: var(--purple-lighter); }
+#searchInput::placeholder { color: var(--muted); }
+.search-close-btn {
+  background: none; border: none; color: var(--muted); font-size: 18px;
+  cursor: pointer; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center;
+  transition: color 0.2s;
+}
+.search-close-btn:hover { color: var(--white); }
+#searchSuggestions {
+  position: absolute; top: 100%; left: 32px; right: 32px;
+  background: var(--card2); border: 1px solid var(--border);
+  border-top: none; max-height: 320px; overflow-y: auto;
+  display: none;
+}
+#searchSuggestions.show { display: block; }
+.suggestion-item {
+  padding: 14px 20px; cursor: pointer; font-size: 14px; color: var(--muted);
+  display: flex; align-items: center; gap: 12px;
+  border-bottom: 1px solid var(--border); transition: background 0.2s, color 0.2s;
+}
+.suggestion-item:hover { background: var(--purple-dim); color: var(--white); }
+.suggestion-item i { color: var(--purple-lighter); font-size: 12px; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; height: 100vh; min-height: 700px;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(to right, rgba(8,5,15,0.9) 45%, rgba(8,5,15,0.15) 100%),
+    linear-gradient(to top, rgba(8,5,15,0.95) 0%, transparent 55%);
+}
+.hero-visual {
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(135deg, #100820 0%, #0d0d1a 40%, #0a1020 100%);
+}
+.hero-visual::before {
+  content: '';
+  position: absolute; right: 10%; top: 50%; transform: translateY(-50%);
+  width: 300px; height: 460px;
+  background: linear-gradient(180deg, rgba(87,49,152,0.12), rgba(87,49,152,0.02));
+  clip-path: polygon(43% 0%,57% 0%,57% 40%,100% 40%,100% 55%,57% 55%,57% 100%,43% 100%,43% 55%,0% 55%,0% 40%,43% 40%);
+  filter: blur(3px);
+}
+.hero-visual::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 65% 45%, rgba(87,49,152,0.1) 0%, transparent 55%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 760px; padding: 0 80px 100px;
+}
+.hero-eyebrow {
+  font-family:var(--font-cond); font-size:12px; font-weight:700;
+  letter-spacing:4px; text-transform:uppercase; color:var(--purple-lighter);
+  margin-bottom:20px; display:flex; align-items:center; gap:12px;
+  opacity:0; animation:fade-up .8s .2s forwards;
+}
+.hero-eyebrow::before { content:''; width:28px; height:1.5px; background:var(--purple-lighter); display:block; }
+.hero-title {
+  font-family:var(--font-display); font-size:clamp(48px,6vw,84px);
+  font-weight:900; line-height:1.0; color:var(--white); margin-bottom:12px;
+  opacity:0; animation:fade-up .9s .35s forwards;
+}
+.hero-title em { font-style:italic; color:var(--purple-lighter); display:block; }
 .hero-sub {
-  font-size: clamp(15px, 1.6vw, 18px);
-  font-weight: 300;
-  color: var(--muted);
-  line-height: 1.7;
-  max-width: 520px;
-  margin: 20px 0 40px;
-  opacity: 0;
-  animation: fade-up 1s 0.5s forwards;
+  font-size:clamp(15px,1.6vw,18px); font-weight:300; color:var(--muted);
+  line-height:1.7; max-width:520px; margin:20px 0 40px;
+  opacity:0; animation:fade-up 1s .5s forwards;
 }
-
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fade-up 1s 0.65s forwards;
-}
-
+.hero-actions { display:flex; gap:16px; flex-wrap:wrap; opacity:0; animation:fade-up 1s .65s forwards; }
 .hero-scroll {
-  position: absolute;
-  bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-cond);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--muted);
-  opacity: 0;
-  animation: fade-in 1s 1.2s forwards;
+  position:absolute; bottom:40px; left:50%; transform:translateX(-50%);
+  z-index:2; display:flex; flex-direction:column; align-items:center; gap:8px;
+  font-family:var(--font-cond); font-size:10px; font-weight:700; letter-spacing:3px;
+  text-transform:uppercase; color:var(--muted); opacity:0; animation:fade-in 1s 1.2s forwards;
 }
+.scroll-line { width:1px; height:48px; background:linear-gradient(to bottom,var(--purple-lighter),transparent); animation:scroll-drop 1.8s ease-in-out infinite; }
+@keyframes scroll-drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fade-up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade-in{from{opacity:0}to{opacity:1}}
 
-.scroll-line {
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scroll-drop 1.8s ease-in-out infinite;
-}
+/* ─── TICKER ─── */
+.times-bar { background:var(--purple); padding:14px 0; overflow:hidden; }
+.times-inner { display:flex; align-items:center; gap:60px; animation:ticker 32s linear infinite; white-space:nowrap; width:max-content; }
+.times-item { display:flex; align-items:center; gap:14px; font-family:var(--font-cond); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#fff; }
+.times-item .sep { opacity:.4; font-size:18px; }
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-@keyframes scroll-drop {
-  0% {
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-  50% {
-    transform: scaleY(1);
-    transform-origin: top;
-  }
-  51% {
-    transform: scaleY(1);
-    transform-origin: bottom;
-  }
-  100% {
-    transform: scaleY(0);
-    transform-origin: bottom;
-  }
-}
+/* ─── SECTION HEADER ─── */
+.section-header { display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px; }
+.section-header h2 { font-family:var(--font-display); font-size:clamp(32px,3vw,48px); font-weight:900; line-height:1.1; color:var(--white); max-width:500px; }
+.section-header h2 em { font-style:italic; color:var(--purple-lighter); }
 
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ─── SCROLL REVEAL ─── */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .8s ease,transform .8s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}.reveal-d4{transition-delay:.4s}
 
-@keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+/* ─── SERVICE TIMES ─── */
+.services { padding:100px 0; background:var(--deep); }
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+.service-card {
+  background:var(--card); border:1px solid var(--border); overflow:hidden;
+  display:flex; flex-direction:column; text-decoration:none; color:inherit;
+  transition:transform .3s, border-color .3s;
 }
+.service-card:hover { transform:translateY(-6px); border-color:var(--purple-light); }
+.service-card-img { aspect-ratio:16/9; overflow:hidden; position:relative; }
+.service-card-img img { width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+.service-card:hover .service-card-img img { transform:scale(1.04); }
+.service-card-body { padding:24px 28px 32px; flex:1; display:flex; flex-direction:column; }
+.service-card-tag { font-family:var(--font-cond); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--purple-lighter); margin-bottom:8px; }
+.service-card-title { font-family:var(--font-display); font-size:22px; font-weight:700; color:var(--white); line-height:1.3; margin-bottom:10px; }
+.service-card-desc { font-size:14px; color:var(--muted); line-height:1.7; flex:1; margin-bottom:20px; }
+
+/* ─── ABOUT ─── */
+.about { padding:100px 0; }
+.about-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.about-visual { position:relative; }
+.about-img { width:100%; aspect-ratio:4/3; overflow:hidden; position:relative; }
+.about-img img { width:100%; height:100%; object-fit:cover; }
+.about-stat-badge {
+  position:absolute; bottom:-28px; right:-28px;
+  background:var(--purple); padding:28px 32px; text-align:center; min-width:180px;
+}
+.about-stat-badge .num { font-family:var(--font-display); font-size:42px; font-weight:900; color:#fff; line-height:1; }
+.about-stat-badge .lbl { font-family:var(--font-cond); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); margin-top:6px; }
+.about-text h2 { font-family:var(--font-display); font-size:clamp(34px,3.5vw,52px); font-weight:900; line-height:1.1; margin-bottom:24px; }
+.about-text h2 em { font-style:italic; color:var(--purple-lighter); }
+.about-text p { font-size:16px; line-height:1.8; color:var(--muted); margin-bottom:16px; }
+.about-links { display:flex; gap:16px; margin-top:40px; flex-wrap:wrap; }
+
+/* ─── LATEST MESSAGE ─── */
+.latest { padding:100px 0; background:var(--deep); }
+.video-featured {
+  width:100%; aspect-ratio:16/9; border:1px solid var(--border);
+  overflow:hidden; margin-bottom:40px; position:relative; background:#000;
+}
+.video-featured iframe { width:100%; height:100%; border:none; display:block; }
+.playlists-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:40px; }
+.playlist-card { background:var(--card); border:1px solid var(--border); overflow:hidden; transition:border-color .3s; }
+.playlist-card:hover { border-color:var(--purple-light); }
+.playlist-video { width:100%; aspect-ratio:16/9; position:relative; background:#000; }
+.playlist-video iframe { width:100%; height:100%; border:none; display:block; }
+.playlist-info { padding:16px 20px 20px; }
+.playlist-tag { font-family:var(--font-cond); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--purple-lighter); margin-bottom:6px; }
+.playlist-title { font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--white); margin-bottom:8px; line-height:1.3; }
+.playlist-link { font-family:var(--font-cond); font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--purple-lighter); display:inline-flex; align-items:center; gap:6px; transition:gap .3s; }
+.playlist-link:hover { gap:10px; }
+
+/* ─── EVENTS ─── */
+.events { padding:100px 0; }
+.events-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+.event-card {
+  background:var(--card); border:1px solid var(--border); display:flex; flex-direction:column;
+  transition:transform .3s, border-color .3s; text-decoration:none; color:inherit;
+}
+.event-card:hover { transform:translateY(-6px); border-color:var(--purple-light); }
+.event-img { aspect-ratio:3/2; position:relative; overflow:hidden; background:linear-gradient(135deg,#1a0d24,#0d1520); }
+.event-img-placeholder { width:100%; height:100%; background:linear-gradient(135deg,#1a0d24,#0d1020); }
+.event-badge {
+  position:absolute; top:16px; left:16px; z-index:1;
+  background:var(--purple); padding:8px 14px; text-align:center;
+}
+.event-badge .day { font-family:var(--font-display); font-size:22px; font-weight:900; color:#fff; line-height:1; }
+.event-badge .month { font-family:var(--font-cond); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.7); }
+.event-body { padding:24px; flex:1; display:flex; flex-direction:column; }
+.event-tag { font-family:var(--font-cond); font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--purple-lighter); margin-bottom:8px; }
+.event-name { font-family:var(--font-display); font-size:20px; font-weight:700; color:var(--white); line-height:1.3; margin-bottom:10px; }
+.event-details { font-size:13px; color:var(--muted); line-height:1.6; flex:1; margin-bottom:20px; }
+
+/* ─── PASTOR ─── */
+.pastor { padding:100px 0; background:var(--deep); }
+.pastor-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.pastor-img-wrap { position:relative; }
+.pastor-photo-frame { width:100%; aspect-ratio:3/4; overflow:hidden; position:relative; }
+.pastor-photo-frame img { width:100%; height:100%; object-fit:cover; object-position:center top; }
+.pastor-quote-badge {
+  position:absolute; bottom:-24px; right:-24px;
+  background:var(--purple); padding:28px 28px; max-width:260px;
+}
+.pastor-quote-badge p { font-family:var(--font-display); font-style:italic; font-size:14px; font-weight:700; color:#fff; line-height:1.5; margin:0; }
+.pastor-text h2 { font-family:var(--font-display); font-size:clamp(34px,3.5vw,52px); font-weight:900; line-height:1.1; margin-bottom:8px; }
+.pastor-name-tag { font-family:var(--font-cond); font-size:14px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--purple-lighter); margin-bottom:28px; }
+.pastor-text p { font-size:16px; line-height:1.8; color:var(--muted); margin-bottom:16px; }
+.pastor-stats { display:flex; gap:32px; margin:36px 0; padding:28px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+.p-stat .num { font-family:var(--font-display); font-size:38px; font-weight:900; color:var(--purple-lighter); line-height:1; }
+.p-stat .lbl { font-family:var(--font-cond); font-size:11px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); }
+
+/* ─── MINISTRIES / CONNECT ─── */
+.connect { padding:100px 0; }
+.connect-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; margin-top:56px; }
+.connect-card {
+  position:relative; overflow:hidden; cursor:pointer;
+  padding:56px 44px; background:var(--card); text-decoration:none; color:inherit;
+  transition:background .3s;
+}
+.connect-card:hover { background:#1c1830; }
+.connect-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:var(--purple); transform:scaleX(0); transform-origin:left; transition:transform .4s ease;
+}
+.connect-card:hover::before { transform:scaleX(1); }
+.connect-num { font-family:var(--font-display); font-size:80px; font-weight:900; color:rgba(255,255,255,.03); line-height:1; position:absolute; top:16px; right:32px; }
+.connect-icon { width:48px; height:48px; background:var(--purple-dim); border:1px solid rgba(123,79,196,.25); display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+.connect-icon i { color:var(--purple-lighter); font-size:18px; }
+.connect-card h3 { font-family:var(--font-display); font-size:24px; font-weight:700; color:var(--white); margin-bottom:12px; position:relative; }
+.connect-card p { font-size:15px; color:var(--muted); line-height:1.7; max-width:320px; margin-bottom:24px; }
+
+/* ─── BIBLE FELLOWSHIP GROUPS ─── */
+.bfg { padding:100px 0; background:var(--deep); }
+.bfg-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:56px; }
+.bfg-card {
+  background:var(--card); border:1px solid var(--border); padding:28px;
+  transition:transform .3s, border-color .3s; position:relative; overflow:hidden;
+}
+.bfg-card:hover { transform:translateY(-4px); border-color:var(--purple-light); }
+.bfg-card::after { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:var(--purple); }
+.bfg-card-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; gap:12px; }
+.bfg-card-title { font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--white); line-height:1.3; }
+.bfg-badge { background:var(--purple-dim); color:var(--purple-lighter); font-family:var(--font-cond); font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:4px 10px; border-radius:1px; white-space:nowrap; flex-shrink:0; }
+.bfg-meta { display:flex; flex-wrap:wrap; gap:12px; margin-bottom:14px; }
+.bfg-meta-item { display:flex; align-items:center; gap:6px; font-size:12px; color:var(--muted); }
+.bfg-meta-item i { color:var(--purple-lighter); font-size:11px; }
+.bfg-desc { font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:20px; }
+.bfg-hidden { display:none; }
+.bfg-hidden.show { display:block; }
+.bfg-more-row { grid-column:1/-1; display:none; }
+.bfg-more-row.show { display:block; }
+.bfg-actions { display:flex; gap:12px; justify-content:center; margin-top:40px; flex-wrap:wrap; }
+
+/* ─── VISIT ─── */
+.visit { padding:100px 0; }
+.visit-inner { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+.visit-info h2 { font-family:var(--font-display); font-size:clamp(36px,3.5vw,52px); font-weight:900; line-height:1.1; margin-bottom:24px; }
+.visit-info h2 em { font-style:italic; color:var(--purple-lighter); }
+.visit-info p { font-size:16px; line-height:1.8; color:var(--muted); margin-bottom:36px; }
+.visit-items { display:flex; flex-direction:column; gap:16px; margin-bottom:36px; }
+.visit-item { display:flex; gap:18px; align-items:flex-start; padding:20px 22px; background:var(--card); border:1px solid var(--border); transition:border-color .3s; }
+.visit-item:hover { border-color:var(--purple-dim); }
+.visit-icon { width:44px; height:44px; background:var(--purple-dim); border:1px solid rgba(123,79,196,.2); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.visit-icon i { color:var(--purple-lighter); font-size:16px; }
+.visit-item h4 { font-family:var(--font-cond); font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:var(--white); margin-bottom:4px; }
+.visit-item p { font-size:13px; color:var(--muted); line-height:1.6; margin:0; }
+.visit-map { width:100%; overflow:hidden; border:1px solid var(--border); }
+.visit-map iframe { width:100%; height:420px; border:none; display:block; filter:grayscale(20%) contrast(1.1); }
+
+/* ─── GIVE ─── */
+.give {
+  padding:120px 0; text-align:center;
+  background:radial-gradient(ellipse at 50% 0%, rgba(87,49,152,.18) 0%, transparent 60%), var(--black);
+}
+.give h2 { font-family:var(--font-display); font-size:clamp(40px,5vw,68px); font-weight:900; line-height:1.05; margin-bottom:24px; }
+.give h2 em { font-style:italic; color:var(--purple-lighter); }
+.give p { font-size:17px; line-height:1.8; color:var(--muted); max-width:580px; margin:0 auto 48px; }
+.give-options { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-bottom:40px; }
+.give-card {
+  background:var(--card); border:1px solid var(--border); padding:32px 36px;
+  min-width:200px; text-align:center; cursor:pointer; transition:all .3s;
+  text-decoration:none; color:inherit; display:flex; flex-direction:column; align-items:center; gap:10px;
+}
+.give-card:hover { border-color:var(--purple-lighter); transform:translateY(-4px); }
+.give-card .g-icon { width:48px; height:48px; background:var(--purple-dim); border:1px solid rgba(123,79,196,.25); display:flex; align-items:center; justify-content:center; }
+.give-card .g-icon i { color:var(--purple-lighter); font-size:18px; }
+.give-card h4 { font-family:var(--font-cond); font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--white); }
+.give-card p { font-size:12px; color:var(--muted); margin:0; }
+
+/* ─── GALLERY ─── */
+.gallery { padding:100px 0; background:var(--deep); }
+.masonry-grid {
+  column-count:4; column-gap:12px; margin-top:56px;
+}
+.masonry-item {
+  break-inside:avoid; margin-bottom:12px; overflow:hidden; position:relative;
+  cursor:pointer;
+}
+.masonry-item img { width:100%; display:block; transition:transform .5s ease; }
+.masonry-item:hover img { transform:scale(1.04); }
+.masonry-item .img-overlay {
+  position:absolute; inset:0; background:rgba(87,49,152,.0);
+  transition:background .3s;
+}
+.masonry-item:hover .img-overlay { background:rgba(87,49,152,.15); }
+.gallery-hidden { display:none; }
+.gallery-hidden.show { display:block; }
+.gallery-actions { display:flex; gap:12px; justify-content:center; margin-top:40px; }
+
+/* ─── CTA BANNER ─── */
+.cta-banner {
+  padding:100px 0; text-align:center;
+  background:linear-gradient(135deg, rgba(87,49,152,.18) 0%, rgba(87,49,152,.04) 50%, transparent 100%), var(--deep);
+  border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+}
+.cta-banner h2 { font-family:var(--font-display); font-size:clamp(38px,5vw,64px); font-weight:900; line-height:1.05; max-width:780px; margin:0 auto 28px; }
+.cta-banner h2 em { font-style:italic; color:var(--purple-lighter); }
+.cta-banner p { font-size:17px; color:var(--muted); max-width:520px; margin:0 auto 44px; line-height:1.8; }
+.cta-times { display:flex; gap:24px; justify-content:center; flex-wrap:wrap; margin-bottom:44px; }
+.cta-time { padding:18px 28px; border:1px solid var(--border); background:var(--card); font-family:var(--font-cond); }
+.cta-time .day { font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--purple-lighter); margin-bottom:4px; }
+.cta-time .time { font-size:20px; font-weight:700; color:var(--white); }
+.cta-time .type { font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+
+/* ─── FOOTER ─── */
+footer { background:var(--black); border-top:1px solid var(--border); padding:80px 0 40px; }
+.footer-grid { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:60px; margin-bottom:60px; }
+.footer-brand img { height:52px; width:auto; margin-bottom:18px; }
+.footer-brand p { font-size:14px; color:var(--muted); line-height:1.8; margin-bottom:24px; max-width:270px; }
+.footer-socials { display:flex; gap:10px; }
+.social-btn {
+  width:36px; height:36px; border:1px solid var(--border); display:flex; align-items:center;
+  justify-content:center; color:var(--muted); font-size:14px; transition:all .3s;
+}
+.social-btn:hover { border-color:var(--purple-lighter); color:var(--purple-lighter); }
+.footer-col h5 { font-family:var(--font-cond); font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--purple-lighter); margin-bottom:20px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col a { font-size:14px; color:var(--muted); text-decoration:none; transition:color .2s; }
+.footer-col a:hover { color:var(--white); }
+.footer-bottom { padding-top:32px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px; }
+.footer-bottom p { font-size:12px; color:var(--muted); }
+.footer-bottom a { color:var(--muted); text-decoration:none; }
+.footer-bottom a:hover { color:var(--purple-lighter); }
+
+/* ─── LIGHTBOX ─── */
+#lightbox {
+  position:fixed; inset:0; z-index:300; background:rgba(0,0,0,.92);
+  display:none; align-items:center; justify-content:center; backdrop-filter:blur(6px);
+}
+#lightbox.open { display:flex; }
+#lightbox img { max-width:90vw; max-height:90vh; object-fit:contain; }
+#lightbox-close {
+  position:absolute; top:20px; right:24px; background:none; border:none;
+  color:#fff; font-size:28px; cursor:pointer; opacity:.7; transition:opacity .2s;
+}
+#lightbox-close:hover { opacity:1; }
 
 /* ─── RESPONSIVE ─── */
-@media (max-width: 991px) {
-  .hero {
-    min-height: 90vh;
-    min-height: 640px;
-  }
-
-  .hero-content {
-    max-width: 680px;
-    padding: 0 48px 88px;
-  }
-
-  .hero-bg {
-    background:
-      linear-gradient(to right, rgba(10, 10, 10, 0.84) 0%, rgba(10, 10, 10, 0.48) 60%, rgba(10, 10, 10, 0.24) 100%),
-      linear-gradient(to top, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.34) 48%, rgba(10, 10, 10, 0.12) 100%);
-  }
+@media(max-width:1024px){
+  .about-inner,.pastor-inner,.visit-inner{grid-template-columns:1fr;gap:48px}
+  .about-stat-badge{bottom:-20px;right:-12px}
+  .pastor-quote-badge{right:-12px}
+  .connect-grid,.services-grid,.events-grid,.bfg-grid,.playlists-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .nav-desktop-links{display:none}
+  .masonry-grid{column-count:3}
 }
-
-@media (max-width: 767px) {
-  .hero {
-    min-height: 100svh;
-    min-height: 680px;
-    align-items: flex-end;
-  }
-
-  .hero-video {
-    width: auto;
-    min-width: 100%;
-    height: 100%;
-    min-height: 100%;
-  }
-
-  .hero-bg {
-    background:
-      linear-gradient(to top, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.62) 42%, rgba(10, 10, 10, 0.28) 100%),
-      linear-gradient(to right, rgba(10, 10, 10, 0.76) 0%, rgba(10, 10, 10, 0.2) 100%);
-  }
-
-  .hero-content {
-    max-width: 100%;
-    padding: 0 24px 88px;
-  }
-
-  .hero-eyebrow {
-    font-size: 11px;
-    letter-spacing: 3px;
-    margin-bottom: 16px;
-  }
-
-  .hero-title {
-    font-size: clamp(42px, 11vw, 64px);
-    line-height: 0.98;
-    margin-bottom: 14px;
-  }
-
-  .hero-sub {
-    max-width: 100%;
-    font-size: 15px;
-    line-height: 1.65;
-    margin: 18px 0 30px;
-  }
-
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .hero-actions .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .hero-scroll {
-    bottom: 22px;
-  }
-
-  .scroll-line {
-    height: 36px;
-  }
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .hero-content{padding:0 28px 80px}
+  .services-grid,.events-grid,.bfg-grid,.playlists-grid,.connect-grid{grid-template-columns:1fr}
+  .masonry-grid{column-count:2}
+  nav#mainNav{padding:0 20px}
+  .give-options{flex-direction:column;align-items:center}
+  .section-header{flex-direction:column;align-items:flex-start;gap:16px}
+  .footer-grid{grid-template-columns:1fr}
+  .pastor-stats{flex-wrap:wrap;gap:20px}
 }
-
-@media (max-width: 479px) {
-  .hero {
-    min-height: 100svh;
-    min-height: 620px;
-  }
-
-  .hero-content {
-    padding: 0 18px 76px;
-  }
-
-  .hero-title {
-    font-size: clamp(36px, 11.5vw, 52px);
-  }
-
-  .hero-sub {
-    font-size: 14px;
-  }
-
-  .hero-eyebrow::before {
-    width: 22px;
-  }
-
-  .hero-scroll {
-    display: none;
-  }
+@media(max-width:480px){
+  .masonry-grid{column-count:1}
+  .cta-times{flex-direction:column;align-items:center}
+  .hero-title{font-size:42px}
 }
-
-/* Optional accessibility improvement */
-@media (prefers-reduced-motion: reduce) {
-  .hero-eyebrow,
-  .hero-title,
-  .hero-sub,
-  .hero-actions,
-  .hero-scroll {
-    opacity: 1;
-    animation: none;
-  }
-
-  .scroll-line {
-    animation: none;
-  }
-}
-  /* ─── SERVICE TIMES TICKER ─── */
-  .times-bar {
-    background: var(--gold);
-    padding: 14px 0;
-    overflow: hidden;
-  }
-  .times-inner {
-    display: flex; align-items: center; gap: 60px;
-    animation: ticker 30s linear infinite;
-    white-space: nowrap;
-    width: max-content;
-  }
-  .times-item {
-    display: flex; align-items: center; gap: 16px;
-    font-family: var(--font-cond); font-size: 13px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: #0a0a0a;
-  }
-  .times-item .sep { opacity: 0.4; font-size: 18px; }
-  @keyframes ticker {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-
-  /* ─── ABOUT STRIP ─── */
-  .about-strip {
-    padding: 100px 0;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
-    align-items: center;
-  }
-  .about-visual {
-    position: relative;
-  }
-  .about-img-main {
-    width: 100%; aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #1c1408 0%, #0d1520 100%);
-    position: relative; overflow: hidden;
-  }
-  .about-img-main::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: 
-      radial-gradient(ellipse at 30% 40%, rgba(201,150,58,0.15) 0%, transparent 60%),
-      linear-gradient(135deg, rgba(201,150,58,0.05) 0%, transparent 100%);
-  }
-  .about-img-main .placeholder-icon {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    font-size: 64px; opacity: 0.08;
-  }
-  .about-img-accent {
-    position: absolute; bottom: -32px; right: -32px;
-    width: 200px; aspect-ratio: 1;
-    background: var(--gold);
-    display: flex; align-items: center; justify-content: center;
-    padding: 28px;
-  }
-  .about-img-accent .stat { text-align: center; }
-  .about-img-accent .stat-num {
-    font-family: var(--font-display); font-size: 42px; font-weight: 900; color: #0a0a0a;
-    line-height: 1;
-  }
-  .about-img-accent .stat-label {
-    font-family: var(--font-cond); font-size: 11px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.65);
-    margin-top: 6px; line-height: 1.3;
-  }
-  .about-text h2 {
-    font-family: var(--font-display); font-size: clamp(34px, 3.5vw, 52px); font-weight: 900;
-    line-height: 1.1; margin-bottom: 24px; color: var(--white);
-  }
-  .about-text h2 em { font-style: italic; color: var(--gold); }
-  .about-text p {
-    font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 16px;
-  }
-  .about-links { display: flex; gap: 16px; margin-top: 40px; flex-wrap: wrap; }
-
-  /* ─── SERMONS ─── */
-  .sermons { padding: 100px 0; background: var(--deep); }
-  .section-header {
-    display: flex; align-items: flex-end; justify-content: space-between;
-    margin-bottom: 56px;
-  }
-  .section-header h2 {
-    font-family: var(--font-display); font-size: clamp(32px, 3vw, 48px); font-weight: 900;
-    line-height: 1.1; color: var(--white); max-width: 480px;
-  }
-  .section-header h2 em { font-style: italic; color: var(--gold); }
-  .sermons-grid {
-    display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 2px;
-  }
-  .sermon-card {
-    position: relative; overflow: hidden; cursor: pointer;
-    background: var(--card);
-  }
-  .sermon-card:first-child { grid-row: span 2; }
-  .sermon-thumb {
-    aspect-ratio: 16/9;
-    background: linear-gradient(135deg, #0d1520, #1a1a2e);
-    position: relative;
-  }
-  .sermon-card:first-child .sermon-thumb { aspect-ratio: unset; height: 100%; min-height: 320px; }
-  .sermon-thumb::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: 
-      radial-gradient(ellipse at 40% 40%, rgba(201,150,58,0.12) 0%, transparent 60%),
-      linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
-  }
-  .play-btn {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-    width: 52px; height: 52px; border-radius: 50%;
-    background: rgba(201,150,58,0.9); border: none; cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 2; transition: transform 0.3s, background 0.3s;
-  }
-  .sermon-card:first-child .play-btn { width: 72px; height: 72px; }
-  .play-btn::after {
-    content: '';
-    border-style: solid;
-    border-width: 9px 0 9px 18px;
-    border-color: transparent transparent transparent #0a0a0a;
-    margin-left: 4px;
-  }
-  .sermon-card:first-child .play-btn::after {
-    border-width: 12px 0 12px 24px;
-  }
-  .play-btn:hover { transform: translate(-50%,-50%) scale(1.1); background: var(--gold-light); }
-  .sermon-info {
-    padding: 20px 24px 24px;
-    background: var(--card);
-    border-top: 1px solid var(--border);
-    transition: background 0.3s;
-  }
-  .sermon-card:hover .sermon-info { background: #1e2028; }
-  .sermon-series {
-    font-family: var(--font-cond); font-size: 10px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px;
-  }
-  .sermon-title {
-    font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--white);
-    line-height: 1.3; margin-bottom: 8px;
-  }
-  .sermon-card:first-child .sermon-title { font-size: 26px; }
-  .sermon-meta {
-    font-size: 13px; color: var(--muted); display: flex; gap: 16px;
-  }
-
-  /* ─── EVENTS ─── */
-  .events { padding: 100px 0; }
-  .events-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-    margin-top: 56px;
-  }
-  .event-card {
-    background: var(--card); border: 1px solid var(--border);
-    display: flex; flex-direction: column;
-    transition: transform 0.3s, border-color 0.3s;
-    text-decoration: none; color: inherit;
-  }
-  .event-card:hover { transform: translateY(-6px); border-color: var(--gold); }
-  .event-img {
-    aspect-ratio: 3/2; position: relative; overflow: hidden;
-    background: linear-gradient(135deg, #1a0d08, #0d1520);
-  }
-  .event-img::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 60%);
-  }
-  .event-date-badge {
-    position: absolute; top: 16px; left: 16px; z-index: 1;
-    background: var(--gold); padding: 8px 14px; text-align: center;
-  }
-  .event-date-badge .day {
-    font-family: var(--font-display); font-size: 22px; font-weight: 900; color: #0a0a0a;
-    line-height: 1;
-  }
-  .event-date-badge .month {
-    font-family: var(--font-cond); font-size: 10px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: rgba(0,0,0,0.7);
-  }
-  .event-body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
-  .event-tag {
-    font-family: var(--font-cond); font-size: 10px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
-  }
-  .event-name {
-    font-family: var(--font-display); font-size: 20px; font-weight: 700; color: var(--white);
-    line-height: 1.3; margin-bottom: 10px;
-  }
-  .event-details {
-    font-size: 13px; color: var(--muted); line-height: 1.6; flex: 1; margin-bottom: 20px;
-  }
-
-  /* ─── VISIT ─── */
-  .visit { padding: 100px 0; background: var(--deep); }
-  .visit-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
-  .visit-info h2 {
-    font-family: var(--font-display); font-size: clamp(36px, 3.5vw, 54px); font-weight: 900;
-    line-height: 1.1; margin-bottom: 24px;
-  }
-  .visit-info h2 em { font-style: italic; color: var(--gold); }
-  .visit-info p { font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 40px; }
-  .visit-items { display: flex; flex-direction: column; gap: 24px; margin-bottom: 40px; }
-  .visit-item {
-    display: flex; gap: 20px; align-items: flex-start;
-    padding: 24px; background: var(--card); border: 1px solid var(--border);
-    transition: border-color 0.3s;
-  }
-  .visit-item:hover { border-color: var(--gold-dim); }
-  .visit-icon {
-    width: 48px; height: 48px; background: var(--gold-dim); border: 1px solid rgba(201,150,58,0.2);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    font-size: 20px;
-  }
-  .visit-item h4 {
-    font-family: var(--font-cond); font-size: 14px; font-weight: 700;
-    letter-spacing: 1.5px; text-transform: uppercase; color: var(--white); margin-bottom: 4px;
-  }
-  .visit-item p { font-size: 14px; color: var(--muted); line-height: 1.6; margin: 0; }
-  .visit-map {
-    position: relative; overflow: hidden;
-  }
-  .map-placeholder {
-    width: 100%; aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #0d1520, #111216);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 16px; border: 1px solid var(--border);
-  }
-  .map-pin { font-size: 48px; opacity: 0.4; }
-  .map-address {
-    text-align: center;
-    font-family: var(--font-cond); font-size: 14px; font-weight: 600;
-    letter-spacing: 1px; color: var(--muted);
-  }
-  .map-address strong { display: block; color: var(--gold); font-size: 16px; margin-bottom: 4px; }
-
-  /* ─── GIVE ─── */
-  .give {
-    padding: 120px 0;
-    background:
-      radial-gradient(ellipse at 50% 0%, rgba(201,150,58,0.12) 0%, transparent 60%),
-      var(--black);
-    text-align: center;
-  }
-  .give h2 {
-    font-family: var(--font-display); font-size: clamp(40px, 5vw, 72px); font-weight: 900;
-    line-height: 1.05; color: var(--white); margin-bottom: 24px;
-  }
-  .give h2 em { font-style: italic; color: var(--gold); }
-  .give p {
-    font-size: 17px; line-height: 1.8; color: var(--muted);
-    max-width: 600px; margin: 0 auto 48px;
-  }
-  .give-options {
-    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-  }
-  .give-card {
-    background: var(--card); border: 1px solid var(--border);
-    padding: 36px 40px; min-width: 220px; text-align: center;
-    cursor: pointer; transition: all 0.3s;
-    text-decoration: none; color: inherit;
-    display: flex; flex-direction: column; align-items: center; gap: 12px;
-  }
-  .give-card:hover { border-color: var(--gold); transform: translateY(-4px); }
-  .give-card .icon { font-size: 32px; }
-  .give-card h4 {
-    font-family: var(--font-cond); font-size: 14px; font-weight: 700;
-    letter-spacing: 2px; text-transform: uppercase; color: var(--white);
-  }
-  .give-card p { font-size: 13px; color: var(--muted); margin: 0; }
-
-  /* ─── CONNECT ─── */
-  .connect { padding: 100px 0; background: var(--deep); }
-  .connect-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 56px;
-  }
-  .connect-card {
-    position: relative; overflow: hidden; cursor: pointer;
-    padding: 60px 48px; background: var(--card);
-    text-decoration: none; color: inherit;
-    transition: background 0.3s;
-  }
-  .connect-card:hover { background: #1a1c24; }
-  .connect-card::before {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-    background: var(--gold); transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .connect-card:hover::before { transform: scaleX(1); }
-  .connect-num {
-    font-family: var(--font-display); font-size: 80px; font-weight: 900;
-    color: rgba(255,255,255,0.04); line-height: 1;
-    position: absolute; top: 16px; right: 32px;
-  }
-  .connect-card h3 {
-    font-family: var(--font-display); font-size: 28px; font-weight: 700;
-    color: var(--white); margin-bottom: 12px; position: relative;
-  }
-  .connect-card p {
-    font-size: 15px; color: var(--muted); line-height: 1.7; max-width: 340px; margin-bottom: 28px;
-  }
-
-  /* ─── PASTOR ─── */
-  .pastor { padding: 100px 0; }
-  .pastor-inner {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-  }
-  .pastor-img {
-    position: relative;
-  }
-  .pastor-photo {
-    width: 100%; aspect-ratio: 3/4;
-    background: linear-gradient(160deg, #1a0d08 0%, #0d1a24 100%);
-    position: relative; overflow: hidden;
-  }
-  .pastor-photo::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 40% 30%, rgba(201,150,58,0.18) 0%, transparent 55%);
-  }
-  .pastor-photo .silhouette {
-    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-    font-size: 200px; opacity: 0.07;
-  }
-  .pastor-quote-accent {
-    position: absolute; bottom: -24px; right: -24px;
-    background: var(--gold); padding: 28px 32px;
-    max-width: 240px;
-  }
-  .pastor-quote-accent p {
-    font-family: var(--font-display); font-style: italic; font-size: 15px;
-    font-weight: 700; color: #0a0a0a; line-height: 1.4; margin: 0;
-  }
-  .pastor-text .section-label { margin-bottom: 28px; }
-  .pastor-text h2 {
-    font-family: var(--font-display); font-size: clamp(34px, 3.5vw, 52px); font-weight: 900;
-    line-height: 1.1; margin-bottom: 8px;
-  }
-  .pastor-name {
-    font-family: var(--font-cond); font-size: 14px; font-weight: 700; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 28px;
-  }
-  .pastor-text p {
-    font-size: 16px; line-height: 1.8; color: var(--muted); margin-bottom: 16px;
-  }
-  .pastor-stats {
-    display: flex; gap: 32px; margin: 36px 0;
-    padding: 28px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-  }
-  .p-stat .num {
-    font-family: var(--font-display); font-size: 38px; font-weight: 900; color: var(--gold);
-    line-height: 1;
-  }
-  .p-stat .lbl {
-    font-family: var(--font-cond); font-size: 11px; font-weight: 600;
-    letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted);
-  }
-
-  /* ─── CTA BANNER ─── */
-  .cta-banner {
-    padding: 100px 0;
-    background:
-      linear-gradient(135deg, rgba(201,150,58,0.12) 0%, rgba(201,150,58,0.03) 50%, transparent 100%),
-      var(--deep);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    text-align: center;
-  }
-  .cta-banner h2 {
-    font-family: var(--font-display); font-size: clamp(38px, 5vw, 68px); font-weight: 900;
-    line-height: 1.05; max-width: 800px; margin: 0 auto 32px; color: var(--white);
-  }
-  .cta-banner h2 em { font-style: italic; color: var(--gold); }
-  .cta-banner p {
-    font-size: 17px; color: var(--muted); max-width: 520px; margin: 0 auto 48px;
-    line-height: 1.8;
-  }
-  .cta-times {
-    display: flex; gap: 32px; justify-content: center; flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-  .cta-time {
-    padding: 18px 32px; border: 1px solid var(--border);
-    background: var(--card);
-    font-family: var(--font-cond);
-  }
-  .cta-time .day {
-    font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 4px;
-  }
-  .cta-time .time { font-size: 20px; font-weight: 700; color: var(--white); }
-  .cta-time .type { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 2px; }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--black); border-top: 1px solid var(--border);
-    padding: 80px 0 40px;
-  }
-  .footer-grid {
-    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 60px;
-    margin-bottom: 60px;
-  }
-  .footer-brand p {
-    font-size: 14px; color: var(--muted); line-height: 1.8; margin: 20px 0 28px;
-    max-width: 280px;
-  }
-  .footer-socials { display: flex; gap: 12px; }
-  .social-btn {
-    width: 38px; height: 38px; border: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    text-decoration: none; color: var(--muted); font-size: 14px;
-    transition: all 0.3s;
-  }
-  .social-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .footer-col h5 {
-    font-family: var(--font-cond); font-size: 11px; font-weight: 700;
-    letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-  }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-col a {
-    font-size: 14px; color: var(--muted); text-decoration: none; transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--white); }
-  .footer-bottom {
-    padding-top: 32px; border-top: 1px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 16px;
-  }
-  .footer-bottom p { font-size: 12px; color: var(--muted); }
-  .footer-bottom a { color: var(--muted); text-decoration: none; }
-  .footer-bottom a:hover { color: var(--gold); }
-
-  /* ─── SCROLL REVEAL ─── */
-  .reveal {
-    opacity: 0; transform: translateY(32px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-  }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 1024px) {
-    .sermons-grid { grid-template-columns: 1fr 1fr; }
-    .sermon-card:first-child { grid-column: span 2; grid-row: span 1; }
-    .sermon-card:first-child .sermon-thumb { min-height: 260px; height: auto; }
-    .about-strip, .visit-inner, .pastor-inner { grid-template-columns: 1fr; gap: 48px; }
-    .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .connect-grid { grid-template-columns: 1fr; }
-    nav .nav-links { display: none; }
-    .hero-content { padding: 0 40px 80px; }
-  }
-  @media (max-width: 640px) {
-    .container { padding: 0 20px; }
-    .hero-content { padding: 0 24px 80px; }
-    .events-grid { grid-template-columns: 1fr; }
-    .give-options { flex-direction: column; align-items: center; }
-    .section-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .sermons-grid { grid-template-columns: 1fr; }
-    .sermon-card:first-child { grid-column: span 1; }
-    nav { padding: 0 20px; }
-    .nav-links { display: none; }
-  }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     NAVIGATION
-═══════════════════════════════════════ -->
-<nav id="mainNav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">W</div>
-    <div class="nav-logo-text">
-      <span class="top">World Harvest</span>
-      <span class="sub">Church · Columbus, OH</span>
-    </div>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#sermons">Sermons</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#ministries">Ministries</a></li>
-    <li><a href="#visit">Visit</a></li>
-    <li><a href="#give">Give</a></li>
-  </ul>
-  <div class="nav-actions">
-    <a href="https://online.whc.life/" target="_blank" class="nav-live">
-      <span class="live-dot"></span>
-      Watch Live
-    </a>
-    <a href="#give" class="nav-give">Give</a>
+<!-- OVERLAY -->
+<div id="overlay"></div>
+
+<!-- SIDEBAR NAV -->
+<div id="sidebar" role="dialog" aria-label="Navigation menu" aria-hidden="true">
+  <div class="sidebar-header">
+    <img src="https://elro-images.s3.us-east-2.amazonaws.com/tosm/WHC+Wheat+Logo+(1).png" alt="World Harvest Church" style="height:44px;width:auto;">
+    <button class="sidebar-close" id="sidebarClose" aria-label="Close menu"><i class="fa fa-times"></i></button>
   </div>
-</nav>
-
-
-<!-- ═══════════════════════════════════════
-     HERO
-═══════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-media">
-    <video
-      class="hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-      aria-label="Background video"
-    >
-      <source src="https://video.wixstatic.com/video/0c8444_de1c0ef5954e4c6393d50cd300bf3b32/1080p/mp4/file.mp4" type="video/mp4">
-    </video>
-  </div>
-
-  <div class="hero-bg"></div>
-
-  <div class="hero-content">
-    <div class="hero-eyebrow">Welcome to The Harv</div>
-
-    <h1 class="hero-title">
-      Experience<br>
-      <em>the Power<br>of God</em>
-    </h1>
-
-    <p class="hero-sub">
-      Miracles. Breakthrough. Revival. A home for world-changers and a house of prayer and healing for the nations. Join Pastor Rod Parsley and the Harv family — on campus or online.
-    </p>
-
-    <div class="hero-actions">
-      <a href="#visit" class="btn btn-primary">Plan Your Visit <span>→</span></a>
-      <a href="https://online.whc.live/" target="_blank" rel="noopener" class="btn btn-outline">Watch Live</a>
-    </div>
-  </div>
-
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════
-     SERVICE TIMES TICKER
-═══════════════════════════════════════ -->
-<div class="times-bar">
-  <div class="times-inner">
-    <div class="times-item">
-      <span>📍</span>
-      <span>4595 Gender Rd., Canal Winchester, OH</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>Sundays — 10:00 AM ET</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>Wednesdays — 7:00 PM ET</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>In Person &amp; Online</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>Family-Friendly · Spirit-Filled · Multi-Generational</span>
-    </div>
-    <!-- duplicate for seamless loop -->
-    <div class="times-item">
-      <span>📍</span>
-      <span>4595 Gender Rd., Canal Winchester, OH</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>Sundays — 10:00 AM ET</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>Wednesdays — 7:00 PM ET</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>In Person &amp; Online</span>
-    </div>
-    <div class="times-item">
-      <span class="sep">·</span>
-      <span>Family-Friendly · Spirit-Filled · Multi-Generational</span>
+  <nav class="sidebar-nav" aria-label="Site navigation">
+    <a href="#about"><i class="fas fa-church"></i> About</a>
+    <a href="#sermons"><i class="fas fa-video"></i> Sermons</a>
+    <a href="#events"><i class="fas fa-calendar-alt"></i> Events</a>
+    <a href="#ministries"><i class="fas fa-users"></i> Ministries</a>
+    <a href="#bfg"><i class="fas fa-book-open"></i> Bible Groups</a>
+    <a href="#visit"><i class="fas fa-map-marker-alt"></i> Visit Us</a>
+    <a href="#give"><i class="fas fa-heart"></i> Give</a>
+    <a href="https://online.whc.life/" target="_blank"><i class="fas fa-broadcast-tower"></i> Watch Live</a>
+  </nav>
+  <div class="sidebar-footer">
+    <a href="https://v4.whc.life/donate" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-gift" style="margin-right:6px"></i> Give Online</a>
+    <a href="https://online.whc.life/" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:0"><i class="fas fa-broadcast-tower" style="margin-right:6px"></i> Watch Live</a>
+    <div class="sidebar-socials">
+      <a href="https://www.facebook.com/rodparsley" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://www.instagram.com/rodparsley" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://x.com/RealRodParsley" target="_blank" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+      <a href="https://www.youtube.com/@rodparsley" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
     </div>
   </div>
 </div>
 
+<!-- SEARCH OVERLAY -->
+<div id="searchOverlay">
+  <i class="fas fa-search" style="color:var(--purple-lighter);font-size:18px;flex-shrink:0"></i>
+  <input type="text" id="searchInput" placeholder="Search Bible Fellowship Groups…" autocomplete="off">
+  <button class="search-close-btn" id="searchClose" aria-label="Close search"><i class="fas fa-times"></i></button>
+  <div id="searchSuggestions"></div>
+</div>
 
-<!-- ═══════════════════════════════════════
-     ABOUT
-═══════════════════════════════════════ -->
-<section id="about">
+<!-- NAVIGATION -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <img src="https://elro-images.s3.us-east-2.amazonaws.com/tosm/WHC+Wheat+Logo+(1).png" alt="World Harvest Church Logo">
+  </a>
+  <ul class="nav-desktop-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#sermons">Sermons</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#ministries">Ministries</a></li>
+    <li><a href="#bfg">Bible Groups</a></li>
+    <li><a href="#visit">Visit</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-search-btn" id="searchToggle" aria-label="Open search"><i class="fas fa-search"></i></button>
+    <a href="https://online.whc.life/" target="_blank" class="nav-live">
+      <span class="live-dot"></span> Watch Live
+    </a>
+    <a href="#give" class="nav-give">Give</a>
+    <button class="nav-hamburger" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+      <i class="fas fa-bars"></i>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-visual"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Welcome to The Harv</div>
+    <h1 class="hero-title">Experience<br><em>the Power<br>of God</em></h1>
+    <p class="hero-sub">Miracles. Breakthrough. Revival. A home for world-changers and a house of prayer and healing for the nations. Join Pastor Rod Parsley and the Harv family — on campus or online.</p>
+    <div class="hero-actions">
+      <a href="#visit" class="btn btn-primary">Plan Your Visit <i class="fas fa-arrow-right"></i></a>
+      <a href="https://online.whc.life/" target="_blank" class="btn btn-outline">Watch Live</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- TICKER -->
+<div class="times-bar">
+  <div class="times-inner">
+    <div class="times-item"><i class="fas fa-map-marker-alt"></i><span>4595 Gender Rd., Canal Winchester, OH</span></div>
+    <div class="times-item"><span class="sep">·</span><span>Sundays — 10:00 AM ET</span></div>
+    <div class="times-item"><span class="sep">·</span><span>Wednesdays — 7:00 PM ET</span></div>
+    <div class="times-item"><span class="sep">·</span><span>In Person &amp; Online</span></div>
+    <div class="times-item"><span class="sep">·</span><span>Family-Friendly · Spirit-Filled · Multi-Generational</span></div>
+    <!-- duplicate -->
+    <div class="times-item"><i class="fas fa-map-marker-alt"></i><span>4595 Gender Rd., Canal Winchester, OH</span></div>
+    <div class="times-item"><span class="sep">·</span><span>Sundays — 10:00 AM ET</span></div>
+    <div class="times-item"><span class="sep">·</span><span>Wednesdays — 7:00 PM ET</span></div>
+    <div class="times-item"><span class="sep">·</span><span>In Person &amp; Online</span></div>
+    <div class="times-item"><span class="sep">·</span><span>Family-Friendly · Spirit-Filled · Multi-Generational</span></div>
+  </div>
+</div>
+
+<!-- SERVICE TIMES -->
+<section class="services" id="services">
   <div class="container">
-    <div class="about-strip">
-
-      <div class="about-visual reveal">
-        <div class="about-img-main">
-          <div class="placeholder-icon">⛪</div>
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Join Us</div>
+        <h2>Worship with us <em>this week</em></h2>
+      </div>
+      <a href="#visit" class="btn-ghost">Plan Your Visit <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="services-grid">
+      <a href="#visit" class="service-card reveal">
+        <div class="service-card-img">
+          <img src="https://ik.imagekit.io/vddpcxj7e/WHC-Sunday-Live-Generic_2000stage@2x.jpg?tr=f-auto,q-auto,w-1200" alt="Sunday Service" loading="lazy">
         </div>
-        <div class="about-img-accent">
-          <div class="stat">
-            <div class="stat-num">40+</div>
-            <div class="stat-label">Years of Breakthrough</div>
-          </div>
+        <div class="service-card-body">
+          <div class="service-card-tag">Every Sunday · 10:00 AM</div>
+          <div class="service-card-title">Sunday Morning Service</div>
+          <div class="service-card-desc">Spirit-filled worship and the Word of God every Sunday. Join us in person or online for powerful, life-changing ministry.</div>
+          <span class="btn-ghost">Learn More <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="https://online.whc.life/" target="_blank" class="service-card reveal reveal-d1">
+        <div class="service-card-img">
+          <img src="https://ik.imagekit.io/vddpcxj7e/Wisdom-Wednesdays_2000stage@2x.jpg?tr=f-auto,q-auto,w-1200" alt="Wednesday Livestream" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-tag">Wednesdays · 7:00 PM</div>
+          <div class="service-card-title">Wisdom Wednesdays Live</div>
+          <div class="service-card-desc">Midweek revival fire — deep study, praise, and breakthrough. Watch online from anywhere in the world.</div>
+          <span class="btn-ghost">Watch Live <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="https://v4.whc.life/donate" class="service-card reveal reveal-d2">
+        <div class="service-card-img">
+          <img src="https://ik.imagekit.io/vddpcxj7e/dcm2025-worship-0644.large.jpg?tr=f-auto,q-auto,w-1200" alt="Give" loading="lazy">
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-tag">Partner with Us</div>
+          <div class="service-card-title">Give &amp; Impact Nations</div>
+          <div class="service-card-desc">Your generosity funds local outreach, global missions, and the Breakthrough broadcast reaching millions worldwide.</div>
+          <span class="btn-ghost">Give Now <i class="fas fa-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+      <div class="about-visual reveal">
+        <div class="about-img">
+          <img src="https://ik.imagekit.io/vddpcxj7e/dcm2025-worship-0644.large.jpg?tr=f-auto,q-auto,w-1200" alt="World Harvest Church" loading="lazy">
+        </div>
+        <div class="about-stat-badge">
+          <div class="num">40+</div>
+          <div class="lbl">Years of Breakthrough</div>
         </div>
       </div>
-
-      <div class="about-text reveal reveal-delay-2">
+      <div class="about-text reveal reveal-d2">
         <div class="section-label">A House of Miracles</div>
         <h2>Built for <em>every generation</em></h2>
         <p>For decades, World Harvest Church has been a place where faith meets power — and families find hope, healing, and purpose. We believe in the miracle-working God who changes lives today.</p>
         <p>Whether you're seeking answers, community, or your next breakthrough, you'll find a family ready to welcome you — exactly as you are.</p>
         <div class="about-links">
-          <a href="#" class="btn btn-primary">Our Pastor</a>
-          <a href="#" class="btn btn-outline">Our Beliefs</a>
+          <a href="https://whc.life/our-pastor" class="btn btn-primary">Our Pastor</a>
+          <a href="https://whc.life/what-we-believe" class="btn btn-outline">Our Beliefs</a>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     SERMONS
-═══════════════════════════════════════ -->
-<section class="sermons" id="sermons">
+<!-- LATEST MESSAGE -->
+<section class="latest" id="sermons">
   <div class="container">
     <div class="section-header reveal">
       <div>
         <div class="section-label">Latest Messages</div>
         <h2>Catch up on <em>this week's word</em></h2>
       </div>
-      <a href="#" class="btn-ghost">View All Sermons <span class="arrow">→</span></a>
+      <a href="https://www.youtube.com/@rodparsley" target="_blank" class="btn-ghost">All Messages <i class="fas fa-arrow-right"></i></a>
     </div>
-
-    <div class="sermons-grid reveal">
-
-      <!-- Featured sermon -->
-      <div class="sermon-card">
-        <div class="sermon-thumb">
-          <button class="play-btn" aria-label="Play featured sermon"></button>
+    <div class="video-featured reveal">
+      <iframe src="https://www.youtube.com/embed/sfaawPpD5Z4?si=b9pyPW7jw0qjtWLP" title="Latest Message" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <div class="section-label reveal" style="margin-top:20px">More to Watch</div>
+    <div class="playlists-grid">
+      <div class="playlist-card reveal">
+        <div class="playlist-video">
+          <iframe src="https://www.youtube.com/embed/videoseries?si=JEir0ngJh3NlOlg9&list=PL1W3RW88DcSGwpoAi9S434B7oKx6Gnej6" title="Sunday Morning Live" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
         </div>
-        <div class="sermon-info">
-          <div class="sermon-series">Featured Series · Revival Fire</div>
-          <div class="sermon-title">When Heaven Opens: Miracles for the Faithful</div>
-          <div class="sermon-meta">
-            <span>Pastor Rod Parsley</span>
-            <span>·</span>
-            <span>Apr 13, 2025</span>
-          </div>
+        <div class="playlist-info">
+          <div class="playlist-tag">Playlist</div>
+          <div class="playlist-title">Sunday Morning Live</div>
+          <a href="https://www.youtube.com/playlist?list=PL1W3RW88DcSGwpoAi9S434B7oKx6Gnej6" target="_blank" class="playlist-link">Watch on YouTube <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-
-      <!-- Sermon 2 -->
-      <div class="sermon-card">
-        <div class="sermon-thumb">
-          <button class="play-btn" aria-label="Play sermon"></button>
+      <div class="playlist-card reveal reveal-d1">
+        <div class="playlist-video">
+          <iframe src="https://www.youtube.com/embed/videoseries?si=3KyM3HjnkxBbeAg3&list=PL1W3RW88DcSE5QgMrLSjKSuvu7Ba4oVn5" title="Wednesday Night Live" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
         </div>
-        <div class="sermon-info">
-          <div class="sermon-series">Sunday Service</div>
-          <div class="sermon-title">Faith That Moves Mountains</div>
-          <div class="sermon-meta"><span>Apr 6, 2025</span></div>
+        <div class="playlist-info">
+          <div class="playlist-tag">Playlist</div>
+          <div class="playlist-title">Wednesday Night Live</div>
+          <a href="https://www.youtube.com/playlist?list=PL1W3RW88DcSE5QgMrLSjKSuvu7Ba4oVn5" target="_blank" class="playlist-link">Watch on YouTube <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-
-      <!-- Sermon 3 -->
-      <div class="sermon-card">
-        <div class="sermon-thumb">
-          <button class="play-btn" aria-label="Play sermon"></button>
+      <div class="playlist-card reveal reveal-d2">
+        <div class="playlist-video">
+          <iframe src="https://www.youtube.com/embed/videoseries?si=wNadI7aR2DK2yRc_&list=PL1W3RW88DcSHbyMACDuEaqNdVDsHPSdTk" title="The Rod Parsley Podcast" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
         </div>
-        <div class="sermon-info">
-          <div class="sermon-series">Wednesday Night</div>
-          <div class="sermon-title">The Power of Prayer & Fasting</div>
-          <div class="sermon-meta"><span>Apr 9, 2025</span></div>
+        <div class="playlist-info">
+          <div class="playlist-tag">Podcast</div>
+          <div class="playlist-title">The Rod Parsley Podcast</div>
+          <a href="https://www.youtube.com/playlist?list=PL1W3RW88DcSHbyMACDuEaqNdVDsHPSdTk" target="_blank" class="playlist-link">Watch on YouTube <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
-
-      <!-- Sermon 4 -->
-      <div class="sermon-card">
-        <div class="sermon-thumb">
-          <button class="play-btn" aria-label="Play sermon"></button>
-        </div>
-        <div class="sermon-info">
-          <div class="sermon-series">Sunday Service</div>
-          <div class="sermon-title">Healing Is Your Covenant Right</div>
-          <div class="sermon-meta"><span>Mar 30, 2025</span></div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     EVENTS
-═══════════════════════════════════════ -->
+<!-- EVENTS -->
 <section class="events" id="events">
   <div class="container">
     <div class="section-header reveal">
@@ -1173,108 +786,79 @@
         <div class="section-label">What's Coming Up</div>
         <h2>Be part of what <em>God is doing</em></h2>
       </div>
-      <a href="https://whc.life/event-list" class="btn-ghost">All Events <span class="arrow">→</span></a>
+      <a href="https://whc.life/event-list" class="btn-ghost">All Events <i class="fas fa-arrow-right"></i></a>
     </div>
-
     <div class="events-grid">
-
       <a href="https://whc.life/easter" class="event-card reveal">
         <div class="event-img">
-          <div class="event-date-badge">
-            <div class="day">19</div>
-            <div class="month">Apr</div>
-          </div>
+          <div class="event-img-placeholder"></div>
+          <div class="event-badge"><div class="day">19</div><div class="month">Apr</div></div>
         </div>
         <div class="event-body">
           <div class="event-tag">Holy Week</div>
           <div class="event-name">Good Friday Service</div>
           <div class="event-details">A powerful evening of reflection, worship, and the story of the cross. Doors open at 6:30 PM — all are welcome.</div>
-          <a href="#" class="btn-ghost">Register Free <span class="arrow">→</span></a>
+          <span class="btn-ghost">Register Free <i class="fas fa-arrow-right"></i></span>
         </div>
       </a>
-
-      <a href="https://whc.life/easter" class="event-card reveal reveal-delay-1">
+      <a href="https://whc.life/easter" class="event-card reveal reveal-d1">
         <div class="event-img">
-          <div class="event-date-badge">
-            <div class="day">20</div>
-            <div class="month">Apr</div>
-          </div>
+          <div class="event-img-placeholder"></div>
+          <div class="event-badge"><div class="day">20</div><div class="month">Apr</div></div>
         </div>
         <div class="event-body">
           <div class="event-tag">Easter Weekend</div>
           <div class="event-name">Easter Sunday Celebration</div>
           <div class="event-details">He is risen! Celebrate the resurrection with worship, a powerful message, and activities for the whole family.</div>
-          <a href="#" class="btn-ghost">Get Details <span class="arrow">→</span></a>
+          <span class="btn-ghost">Get Details <i class="fas fa-arrow-right"></i></span>
         </div>
       </a>
-
-      <a href="https://whc.life/easter" class="event-card reveal reveal-delay-2">
+      <a href="https://whc.life/easter" class="event-card reveal reveal-d2">
         <div class="event-img">
-          <div class="event-date-badge">
-            <div class="day">27</div>
-            <div class="month">Apr</div>
-          </div>
+          <div class="event-img-placeholder"></div>
+          <div class="event-badge"><div class="day">27</div><div class="month">Apr</div></div>
         </div>
         <div class="event-body">
           <div class="event-tag">Kids Ministry</div>
           <div class="event-name">Kingdom Harvest Kids: Up, Up &amp; Away!</div>
-          <div class="event-details">A special Sunday morning experience for kids K–5th grade filled with games, praise, and teaching. Kids will love it!</div>
-          <a href="#" class="btn-ghost">Learn More <span class="arrow">→</span></a>
+          <div class="event-details">A special Sunday morning experience for kids K–5th filled with games, praise, and teaching. Kids will love it!</div>
+          <span class="btn-ghost">Learn More <i class="fas fa-arrow-right"></i></span>
         </div>
       </a>
-
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     PASTOR
-═══════════════════════════════════════ -->
-<section class="pastor">
+<!-- PASTOR -->
+<section class="pastor" id="pastor">
   <div class="container">
     <div class="pastor-inner">
-
-      <div class="pastor-img reveal">
-        <div class="pastor-photo">
-          <div class="silhouette">🧑‍💼</div>
+      <div class="pastor-img-wrap reveal">
+        <div class="pastor-photo-frame">
+          <img src="https://ik.imagekit.io/vddpcxj7e/pastor-rod.jpg?tr=f-auto,q-auto,w-1200" alt="Pastor Rod Parsley" loading="lazy">
         </div>
-        <div class="pastor-quote-accent">
+        <div class="pastor-quote-badge">
           <p>"God is still in the miracle business — and your breakthrough is closer than you think."</p>
         </div>
       </div>
-
-      <div class="pastor-text reveal reveal-delay-2">
+      <div class="pastor-text reveal reveal-d2">
         <div class="section-label">Meet Our Pastor</div>
         <h2>Pastor Rod Parsley</h2>
-        <div class="pastor-name">Founder &amp; Senior Pastor</div>
+        <div class="pastor-name-tag">Founder &amp; Senior Pastor</div>
         <p>Rod Parsley is one of America's foremost authorities on Christian social action, communicating the Gospel to millions worldwide through his television program <em>Breakthrough</em>.</p>
         <p>For over four decades, Pastor Parsley has led World Harvest Church with a bold message of hope, healing, and revival — impacting generations both locally and globally.</p>
         <div class="pastor-stats">
-          <div class="p-stat">
-            <div class="num">40+</div>
-            <div class="lbl">Years in Ministry</div>
-          </div>
-          <div class="p-stat">
-            <div class="num">TV</div>
-            <div class="lbl">Global Broadcast</div>
-          </div>
-          <div class="p-stat">
-            <div class="num">1000s</div>
-            <div class="lbl">Lives Changed</div>
-          </div>
+          <div class="p-stat"><div class="num">40+</div><div class="lbl">Years in Ministry</div></div>
+          <div class="p-stat"><div class="num">TV</div><div class="lbl">Global Broadcast</div></div>
+          <div class="p-stat"><div class="num">1000s</div><div class="lbl">Lives Changed</div></div>
         </div>
         <a href="https://whc.life/our-pastor" class="btn btn-primary">Learn More</a>
       </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     CONNECT / MINISTRIES
-═══════════════════════════════════════ -->
+<!-- MINISTRIES -->
 <section class="connect" id="ministries">
   <div class="container">
     <div class="section-header reveal">
@@ -1284,266 +868,437 @@
       </div>
     </div>
     <div class="connect-grid">
-
       <a href="#" class="connect-card reveal">
         <div class="connect-num">01</div>
+        <div class="connect-icon"><i class="fas fa-child"></i></div>
         <h3>Kingdom Harvest Kids</h3>
-        <p>Safe, fun, and inspiring environments where children experience God's love at every age and stage — from nursery through 5th grade.</p>
-        <span class="btn-ghost">Explore Kids Ministry <span class="arrow">→</span></span>
+        <p>Safe, fun, and inspiring environments where children experience God's love at every age and stage — nursery through 5th grade.</p>
+        <span class="btn-ghost">Explore Kids Ministry <i class="fas fa-arrow-right"></i></span>
       </a>
-
-      <a href="#" class="connect-card reveal reveal-delay-1">
+      <a href="#" class="connect-card reveal reveal-d1">
         <div class="connect-num">02</div>
+        <div class="connect-icon"><i class="fas fa-fire"></i></div>
         <h3>Youth &amp; Young Adults</h3>
         <p>A vibrant community for students and young adults to grow, belong, and discover God's extraordinary plan for their lives.</p>
-        <span class="btn-ghost">Connect with Youth <span class="arrow">→</span></span>
+        <span class="btn-ghost">Connect with Youth <i class="fas fa-arrow-right"></i></span>
       </a>
-
-      <a href="#" class="connect-card reveal reveal-delay-2">
+      <a href="#" class="connect-card reveal reveal-d2">
         <div class="connect-num">03</div>
+        <div class="connect-icon"><i class="fas fa-hands"></i></div>
         <h3>Care &amp; Prayer Ministry</h3>
         <p>You are not alone. Our prayer and care teams stand ready to believe with you for healing, restoration, and breakthrough.</p>
-        <span class="btn-ghost">Request Prayer <span class="arrow">→</span></span>
+        <span class="btn-ghost">Request Prayer <i class="fas fa-arrow-right"></i></span>
       </a>
-
-      <a href="#" class="connect-card reveal reveal-delay-3">
+      <a href="#" class="connect-card reveal reveal-d3">
         <div class="connect-num">04</div>
+        <div class="connect-icon"><i class="fas fa-globe"></i></div>
         <h3>Missions &amp; Outreach</h3>
         <p>World Harvest Church is a house of prayer for all nations. Join our global mission to bring the Gospel to every corner of the earth.</p>
-        <span class="btn-ghost">Get Involved <span class="arrow">→</span></span>
+        <span class="btn-ghost">Get Involved <i class="fas fa-arrow-right"></i></span>
       </a>
-
     </div>
   </div>
 </section>
 
+<!-- BIBLE FELLOWSHIP GROUPS -->
+<section class="bfg" id="bfg">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Community</div>
+        <h2>Bible Fellowship <em>Groups</em></h2>
+      </div>
+      <a href="https://whc.life/pages/3490-Bible-Fellowship-Groups" target="_blank" class="btn-ghost">View All Groups <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <p class="reveal" style="color:var(--muted);font-size:16px;line-height:1.8;max-width:600px;margin-bottom:0">
+      Connect with others who share your faith. Bible Fellowship Groups meet weekly in homes and on campus across the Columbus area.
+    </p>
+    <div class="bfg-grid" id="bfgGrid">
+      <!-- Groups rendered by JS -->
+    </div>
+    <div class="bfg-actions" id="bfgActions"></div>
+  </div>
+</section>
 
-<!-- ═══════════════════════════════════════
-     PLAN YOUR VISIT
-═══════════════════════════════════════ -->
+<!-- VISIT -->
 <section class="visit" id="visit">
   <div class="container">
     <div class="visit-inner">
-
       <div class="visit-info reveal">
         <div class="section-label">First Time Here?</div>
         <h2>We can't wait <em>to meet you</em></h2>
-        <p>Everything you need to know for your first Sunday — from parking to kids check-in. We promise: you'll feel right at home.</p>
-
+        <p>Everything you need for your first Sunday — from parking to kids check-in. We promise: you'll feel right at home.</p>
         <div class="visit-items">
           <div class="visit-item">
-            <div class="visit-icon">📍</div>
+            <div class="visit-icon"><i class="fas fa-map-marker-alt"></i></div>
             <div>
               <h4>Location</h4>
-              <p>4595 Gender Rd., Canal Winchester, OH 43110</p>
+              <p><a href="https://maps.app.goo.gl/6sUwTmPKDDXbqZ5n8" target="_blank" style="color:var(--purple-lighter);text-decoration:underline;">4595 Gender Rd., Canal Winchester, OH 43110</a></p>
             </div>
           </div>
           <div class="visit-item">
-            <div class="visit-icon">🕙</div>
+            <div class="visit-icon"><i class="fas fa-clock"></i></div>
             <div>
               <h4>Service Times</h4>
               <p>Sundays 10:00 AM · Wednesdays 7:00 PM<br>Both in-person and livestreamed online</p>
             </div>
           </div>
           <div class="visit-item">
-            <div class="visit-icon">👨‍👩‍👧‍👦</div>
+            <div class="visit-icon"><i class="fas fa-users"></i></div>
             <div>
               <h4>Families Welcome</h4>
               <p>Kids check-in is easy. Our Kingdom Harvest Kids rooms are fully staffed and secure.</p>
             </div>
           </div>
           <div class="visit-item">
-            <div class="visit-icon">📞</div>
+            <div class="visit-icon"><i class="fas fa-phone"></i></div>
             <div>
               <h4>Questions?</h4>
               <p>(614) 837-1990 · webmaster@whc.life</p>
             </div>
           </div>
         </div>
-
-        <a href="#" class="btn btn-primary">Plan Your Visit</a>
+        <a href="#" class="btn btn-primary"><i class="fas fa-compass" style="margin-right:6px"></i> Plan Your Visit</a>
       </div>
-
-      <div class="visit-map reveal reveal-delay-2">
-        <div class="map-placeholder">
-          <div class="map-pin">📍</div>
-          <div class="map-address">
-            <strong>World Harvest Church</strong>
-            4595 Gender Road<br>Canal Winchester, OH 43110
-          </div>
-          <a href="https://maps.google.com/?q=World+Harvest+Church+Canal+Winchester+OH" target="_blank" class="btn btn-outline" style="margin-top:8px">
-            Open in Maps →
-          </a>
-        </div>
+      <div class="visit-map reveal reveal-d2">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d164625.72197550282!2d-83.05399128000789!3d39.94206075076837!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88387c84e6a7b357%3A0xe170fcc8cf231e4e!2s4595%20Gender%20Rd%2C%20Canal%20Winchester%2C%20OH%2043110%2C%20USA!5e0!3m2!1sen!2ske!4v1776419564113!5m2!1sen!2ske" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
-
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     GIVE
-═══════════════════════════════════════ -->
+<!-- GIVE -->
 <section class="give" id="give">
   <div class="container">
-    <div class="section-label" style="justify-content:center">Generosity</div>
+    <div class="section-label reveal" style="justify-content:center">Generosity</div>
     <h2 class="reveal">Your giving <em>changes lives</em><br>around the world</h2>
-    <p class="reveal reveal-delay-1">Every gift to World Harvest Church fuels local outreach, global missions, and the broadcast of the Gospel to millions. Thank you for partnering with us.</p>
-
+    <p class="reveal reveal-d1">Every gift to World Harvest Church fuels local outreach, global missions, and the broadcast of the Gospel to millions. Thank you for partnering with us.</p>
     <div class="give-options">
       <a href="https://v4.whc.life/donate" class="give-card reveal">
-        <div class="icon">💳</div>
+        <div class="g-icon"><i class="fas fa-credit-card"></i></div>
         <h4>Give Online</h4>
-        <p>Secure, fast &amp; easy</p>
+        <p>Secure &amp; fast</p>
       </a>
-      <a href="tel:6148371990" class="give-card reveal reveal-delay-1">
-        <div class="icon">📞</div>
+      <a href="tel:6148371990" class="give-card reveal reveal-d1">
+        <div class="g-icon"><i class="fas fa-phone"></i></div>
         <h4>Give by Phone</h4>
         <p>(614) 837-1990</p>
       </a>
-      <a href="#" class="give-card reveal reveal-delay-2">
-        <div class="icon">✉️</div>
+      <a href="#" class="give-card reveal reveal-d2">
+        <div class="g-icon"><i class="fas fa-envelope"></i></div>
         <h4>Give by Mail</h4>
         <p>4595 Gender Rd, OH</p>
       </a>
-      <a href="#" class="give-card reveal reveal-delay-3">
-        <div class="icon">🔄</div>
-        <h4>Set Up Recurring</h4>
-        <p>Automatic monthly giving</p>
+      <a href="#" class="give-card reveal reveal-d3">
+        <div class="g-icon"><i class="fas fa-sync-alt"></i></div>
+        <h4>Recurring Gift</h4>
+        <p>Automatic monthly</p>
       </a>
+    </div>
+    <div class="reveal reveal-d2" style="margin-top:12px">
+      <a href="#" class="btn btn-outline"><i class="fas fa-hand-holding-heart" style="margin-right:8px"></i> Volunteer</a>
     </div>
   </div>
 </section>
 
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Community Life</div>
+        <h2>Life at <em>The Harv</em></h2>
+      </div>
+    </div>
+    <div class="masonry-grid" id="galleryGrid"></div>
+    <div class="gallery-actions" id="galleryActions"></div>
+  </div>
+</section>
 
-<!-- ═══════════════════════════════════════
-     CTA BANNER
-═══════════════════════════════════════ -->
+<!-- CTA BANNER -->
 <section class="cta-banner">
   <div class="container">
     <h2 class="reveal">Your <em>next breakthrough</em><br>starts this Sunday</h2>
-    <p class="reveal reveal-delay-1">No matter where you've been or what you're going through — there is a place for you at World Harvest Church. Come as you are. Leave changed.</p>
-
-    <div class="cta-times reveal reveal-delay-1">
-      <div class="cta-time">
-        <div class="day">Sunday</div>
-        <div class="time">10:00 AM ET</div>
-        <div class="type">In Person &amp; Online</div>
-      </div>
-      <div class="cta-time">
-        <div class="day">Wednesday</div>
-        <div class="time">7:00 PM ET</div>
-        <div class="type">In Person &amp; Online</div>
-      </div>
+    <p class="reveal reveal-d1">No matter where you've been or what you're going through — there is a place for you at World Harvest Church. Come as you are. Leave changed.</p>
+    <div class="cta-times reveal reveal-d1">
+      <div class="cta-time"><div class="day">Sunday</div><div class="time">10:00 AM ET</div><div class="type">In Person &amp; Online</div></div>
+      <div class="cta-time"><div class="day">Wednesday</div><div class="time">7:00 PM ET</div><div class="type">In Person &amp; Online</div></div>
     </div>
-
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap" class="reveal reveal-delay-2">
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap" class="reveal reveal-d2">
       <a href="#visit" class="btn btn-primary">Plan Your Visit</a>
-      <a href="https://online.whc.live/" target="_blank" class="btn btn-outline">Watch Online</a>
+      <a href="https://online.whc.life/" target="_blank" class="btn btn-outline">Watch Online</a>
     </div>
   </div>
 </section>
 
-
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-grid">
-
       <div class="footer-brand">
-        <a href="#" class="nav-logo" style="text-decoration:none;display:flex;align-items:center;gap:12px">
-          <div class="nav-logo-mark">W</div>
-          <div class="nav-logo-text">
-            <span class="top">World Harvest</span>
-            <span class="sub">Church · Columbus, OH</span>
-          </div>
-        </a>
+        <img src="https://elro-images.s3.us-east-2.amazonaws.com/tosm/WHC+Wheat+Logo+(1).png" alt="World Harvest Church">
         <p>A house of prayer and healing for the nations. Miracles · Breakthrough · Revival.</p>
         <div class="footer-socials">
-          <a href="https://youtube.com/channel/rodparsley" target="_blank" class="social-btn" title="YouTube">▶</a>
-          <a href="http://facebook.com/rodparsley/" target="_blank" class="social-btn" title="Facebook">f</a>
-          <a href="https://x.com/RealRodParsley" target="_blank" class="social-btn" title="X">𝕏</a>
+          <a href="https://www.facebook.com/rodparsley" target="_blank" title="Facebook" class="social-btn"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/rodparsley" target="_blank" title="Instagram" class="social-btn"><i class="fab fa-instagram"></i></a>
+          <a href="https://x.com/RealRodParsley" target="_blank" title="X (Twitter)" class="social-btn"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.youtube.com/@rodparsley" target="_blank" title="YouTube" class="social-btn"><i class="fab fa-youtube"></i></a>
         </div>
       </div>
-
       <div class="footer-col">
         <h5>Visit</h5>
         <ul>
-          <li><a href="#">Plan Your Visit</a></li>
-          <li><a href="#">Service Times</a></li>
-          <li><a href="#">Parking &amp; Directions</a></li>
-          <li><a href="#">Kids Ministry</a></li>
-          <li><a href="#">Contact Us</a></li>
+          <li><a href="#visit">Plan Your Visit</a></li>
+          <li><a href="#visit">Service Times</a></li>
+          <li><a href="https://maps.app.goo.gl/6sUwTmPKDDXbqZ5n8" target="_blank">Parking &amp; Directions</a></li>
+          <li><a href="#ministries">Kids Ministry</a></li>
+          <li><a href="mailto:webmaster@whc.life">Contact Us</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h5>Discover</h5>
         <ul>
-          <li><a href="#">About WHC</a></li>
-          <li><a href="#">Our Pastor</a></li>
-          <li><a href="#">Our Beliefs</a></li>
-          <li><a href="#">Ministries</a></li>
-          <li><a href="#">Events</a></li>
+          <li><a href="#about">About WHC</a></li>
+          <li><a href="https://whc.life/our-pastor">Our Pastor</a></li>
+          <li><a href="https://whc.life/what-we-believe">Our Beliefs</a></li>
+          <li><a href="#ministries">Ministries</a></li>
+          <li><a href="#events">Events</a></li>
         </ul>
       </div>
-
       <div class="footer-col">
         <h5>Media &amp; More</h5>
         <ul>
-          <li><a href="https://online.whc.live/">Watch Live</a></li>
-          <li><a href="#">Sermons &amp; Archive</a></li>
+          <li><a href="https://online.whc.life/">Watch Live</a></li>
+          <li><a href="https://www.youtube.com/@rodparsley" target="_blank">YouTube Channel</a></li>
           <li><a href="https://v4.whc.life/donate">Give Online</a></li>
-          <li><a href="#">Prayer Request</a></li>
-          <li><a href="https://whc.life/notifications">Notifications</a></li>
+          <li><a href="#bfg">Bible Groups</a></li>
+          <li><a href="https://v4.whc.life/notifications">Notifications</a></li>
         </ul>
       </div>
-
     </div>
-
     <div class="footer-bottom">
       <p>© 2026 World Harvest Church · All rights reserved · <a href="https://whc.life/privacy-policy">Privacy Policy</a></p>
-      <p>4595 Gender Road, Canal Winchester, Ohio · <a href="tel:6148371990">(614) 837-1990</a> · <a href="mailto:webmaster@whc.life">webmaster@whc.life</a></p>
+      <p><a href="https://maps.app.goo.gl/6sUwTmPKDDXbqZ5n8" target="_blank">4595 Gender Rd. Canal Winchester, OH 43110</a> · <a href="tel:6148371990">(614) 837-1990</a></p>
     </div>
   </div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lightbox-close" aria-label="Close image"><i class="fas fa-times"></i></button>
+  <img id="lightbox-img" src="" alt="">
+</div>
 
-<!-- ═══════════════════════════════════════
-     SCRIPTS
-═══════════════════════════════════════ -->
 <script>
-  // Nav scroll effect
-  const nav = document.getElementById('mainNav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
+// ─── DATA ───────────────────────────────────────────────────
+const BFG_GROUPS = [
+  { name:"Monday Morning Men's Group", day:"Mondays", time:"9:00 AM", location:"Canal Winchester Campus", leader:"Deacon James Turner", type:"Men", desc:"A weekly gathering for men to study the Word, pray together, and hold each other accountable in faith and daily life." },
+  { name:"Women of the Harvest", day:"Tuesdays", time:"10:00 AM", location:"Room 204, WHC Campus", leader:"Sis. Patricia Moore", type:"Women", desc:"A powerful circle of women seeking deeper relationship with God, one another, and their communities." },
+  { name:"Young Adults Fire Circle", day:"Thursdays", time:"7:00 PM", location:"Discipleship Center", leader:"Pastor Marcus Hill", type:"Young Adults", desc:"Ages 18–35. Connect, grow, and discover God's purpose for your life in a dynamic community setting." },
+  { name:"Couples of Covenant", day:"Saturdays", time:"4:00 PM", location:"Fellowship Hall A", leader:"Pastor & Mrs. Daniels", type:"Couples", desc:"Strengthening marriages through the Word of God, prayer, and authentic community." },
+  { name:"Seniors of Wisdom", day:"Wednesdays", time:"11:00 AM", location:"Room 112, WHC Campus", leader:"Elder Dorothy Wright", type:"Seniors", desc:"A loving community for seniors (55+) to study scripture, encourage one another, and share the wisdom of a life lived in faith." },
+  { name:"Teen Bible Explorers", day:"Sundays", time:"12:30 PM", location:"Youth Wing", leader:"Min. Brandon Scott", type:"Youth", desc:"Teens ages 13–17 dive deep into God's Word and real-life application in a safe, fun environment." },
+  { name:"Eastside Neighborhood Group", day:"Tuesdays", time:"7:00 PM", location:"Private Home – East Columbus", leader:"Bro. & Sis. Adeola", type:"All Ages", desc:"A vibrant home group welcoming all ages from the East Columbus community for worship, study, and fellowship." },
+  { name:"Prayer Warriors Intercessory Group", day:"Fridays", time:"6:00 AM", location:"Prayer Chapel, WHC", leader:"Prophetess Ann Davis", type:"Prayer", desc:"Dedicated intercessors gathering early to stand in the gap for the church, community, and nations." },
+  { name:"Spanish-Speaking Fellowship", day:"Sundays", time:"1:00 PM", location:"Room 305, WHC Campus", leader:"Pastor Carlos Ruiz", type:"Spanish", desc:"Bienvenidos! A warm community for Spanish-speaking believers to worship and study in their heart language." },
+];
+
+const GALLERY_IMAGES = [
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC06964.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC06031.jpg?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/nathan-dumlao-P5MXtYfgmmw-unsplash.jpg?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC00690.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC00483.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC00552.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC00645.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC00682.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/Photo Nov 01 2019, 11 57 28 PM (1).jpg?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC08359.jpeg?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC08549.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC08701.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC08742.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/DSC08736.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/F79A0470.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/F79A0562.JPG?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/Photo Oct 01, 9 47 24 PM.jpg?tr=f-auto,q-auto,w-1200",
+  "https://ik.imagekit.io/vddpcxj7e/whc/Photo Sep 29, 3 38 19 PM.jpg?tr=f-auto,q-auto,w-1200",
+];
+
+// ─── SIDEBAR ────────────────────────────────────────────────
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+const menuToggle = document.getElementById('menuToggle');
+const sidebarClose = document.getElementById('sidebarClose');
+
+function openSidebar() {
+  sidebar.classList.add('open');
+  overlay.classList.add('active');
+  sidebar.setAttribute('aria-hidden','false');
+  menuToggle.setAttribute('aria-expanded','true');
+  document.body.classList.add('menu-open');
+}
+function closeSidebar() {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('active');
+  sidebar.setAttribute('aria-hidden','true');
+  menuToggle.setAttribute('aria-expanded','false');
+  document.body.classList.remove('menu-open');
+}
+menuToggle.addEventListener('click', openSidebar);
+sidebarClose.addEventListener('click', closeSidebar);
+overlay.addEventListener('click', closeSidebar);
+sidebar.querySelectorAll('nav a').forEach(a => a.addEventListener('click', closeSidebar));
+document.addEventListener('keydown', e => { if(e.key==='Escape'){closeSidebar();closeSearch();} });
+
+// ─── NAV SCROLL ─────────────────────────────────────────────
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// ─── SMOOTH SCROLL ──────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
   });
+});
 
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+// ─── SEARCH ─────────────────────────────────────────────────
+const searchOverlay = document.getElementById('searchOverlay');
+const searchToggle = document.getElementById('searchToggle');
+const searchClose = document.getElementById('searchClose');
+const searchInput = document.getElementById('searchInput');
+const suggestions = document.getElementById('searchSuggestions');
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function openSearch(){ searchOverlay.classList.add('open'); setTimeout(()=>searchInput.focus(),200); }
+function closeSearch(){ searchOverlay.classList.remove('open'); searchInput.value=''; suggestions.classList.remove('show'); suggestions.innerHTML=''; }
+searchToggle.addEventListener('click', openSearch);
+searchClose.addEventListener('click', closeSearch);
 
-  // Smooth scroll for nav links
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
+searchInput.addEventListener('input', function(){
+  const q = this.value.trim().toLowerCase();
+  if(!q){ suggestions.classList.remove('show'); suggestions.innerHTML=''; return; }
+  const matches = BFG_GROUPS.filter(g =>
+    g.name.toLowerCase().includes(q) ||
+    g.type.toLowerCase().includes(q) ||
+    g.day.toLowerCase().includes(q) ||
+    g.desc.toLowerCase().includes(q)
+  );
+  if(!matches.length){ suggestions.classList.remove('show'); return; }
+  suggestions.innerHTML = matches.map(g => `
+    <div class="suggestion-item" onclick="jumpToBFG()">
+      <i class="fas fa-book-open"></i>
+      <div>
+        <div style="font-weight:600;color:var(--white)">${g.name}</div>
+        <div style="font-size:12px;margin-top:2px">${g.day} · ${g.time} · ${g.type}</div>
+      </div>
+    </div>
+  `).join('');
+  suggestions.classList.add('show');
+});
+
+function jumpToBFG(){
+  closeSearch();
+  document.getElementById('bfg').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ─── SCROLL REVEAL ──────────────────────────────────────────
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+
+// ─── BIBLE FELLOWSHIP GROUPS ─────────────────────────────────
+const VISIBLE_START = 3;
+let bfgExpanded = false;
+
+function renderBFG(){
+  const grid = document.getElementById('bfgGrid');
+  const actions = document.getElementById('bfgActions');
+  grid.innerHTML = BFG_GROUPS.map((g, i) => `
+    <div class="bfg-card reveal${i >= VISIBLE_START && !bfgExpanded ? ' bfg-hidden' : ''}" data-bfg="${i}">
+      <div class="bfg-card-header">
+        <div class="bfg-card-title">${g.name}</div>
+        <div class="bfg-badge">${g.type}</div>
+      </div>
+      <div class="bfg-meta">
+        <span class="bfg-meta-item"><i class="fas fa-calendar-alt"></i> ${g.day}</span>
+        <span class="bfg-meta-item"><i class="fas fa-clock"></i> ${g.time}</span>
+        <span class="bfg-meta-item"><i class="fas fa-map-marker-alt"></i> ${g.location}</span>
+        <span class="bfg-meta-item"><i class="fas fa-user"></i> ${g.leader}</span>
+      </div>
+      <div class="bfg-desc">${g.desc}</div>
+      <span class="btn-ghost">Join This Group <i class="fas fa-arrow-right"></i></span>
+    </div>
+  `).join('');
+
+  actions.innerHTML = BFG_GROUPS.length > VISIBLE_START ? `
+    <button class="btn btn-outline" id="bfgToggleBtn" onclick="toggleBFG()">
+      <i class="fas fa-${bfgExpanded ? 'minus' : 'plus'}" style="margin-right:6px"></i>
+      ${bfgExpanded ? 'Show Fewer Groups' : `Show All ${BFG_GROUPS.length} Groups`}
+    </button>
+    <a href="https://whc.life/pages/3490-Bible-Fellowship-Groups" target="_blank" class="btn btn-primary">
+      <i class="fas fa-users" style="margin-right:6px"></i> Find a Group Near You
+    </a>
+  ` : '';
+
+  // re-observe new elements
+  document.querySelectorAll('.bfg-card.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+}
+
+function toggleBFG(){
+  bfgExpanded = !bfgExpanded;
+  renderBFG();
+  if(!bfgExpanded){ document.getElementById('bfg').scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+
+renderBFG();
+
+// ─── GALLERY ────────────────────────────────────────────────
+const GALLERY_VISIBLE_START = 8;
+let galleryExpanded = false;
+
+function renderGallery(){
+  const grid = document.getElementById('galleryGrid');
+  const actions = document.getElementById('galleryActions');
+
+  grid.innerHTML = GALLERY_IMAGES.map((src, i) => {
+    const hidden = i >= GALLERY_VISIBLE_START && !galleryExpanded ? 'gallery-hidden' : '';
+    return `
+      <div class="masonry-item ${hidden}" onclick="openLightbox('${src}')">
+        <img src="${src}" alt="World Harvest Church" loading="lazy">
+        <div class="img-overlay"></div>
+      </div>
+    `;
+  }).join('');
+
+  actions.innerHTML = `
+    <button class="btn btn-outline" onclick="toggleGallery()">
+      <i class="fas fa-${galleryExpanded ? 'minus' : 'plus'}" style="margin-right:6px"></i>
+      ${galleryExpanded ? 'Show Fewer' : `Show All ${GALLERY_IMAGES.length} Photos`}
+    </button>
+  `;
+}
+
+function toggleGallery(){
+  galleryExpanded = !galleryExpanded;
+  renderGallery();
+  if(!galleryExpanded){ document.getElementById('gallery').scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+
+renderGallery();
+
+// ─── LIGHTBOX ───────────────────────────────────────────────
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+function openLightbox(src){ lightboxImg.src=src; lightbox.classList.add('open'); document.body.style.overflow='hidden'; }
+document.getElementById('lightbox-close').addEventListener('click',()=>{ lightbox.classList.remove('open'); document.body.style.overflow=''; });
+lightbox.addEventListener('click',e=>{ if(e.target===lightbox){ lightbox.classList.remove('open'); document.body.style.overflow=''; } });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 </script>
 </body>
 </html>

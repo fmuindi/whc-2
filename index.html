@@ -134,7 +134,8 @@ nav#mainNav.scrolled {
   border-bottom: 1px solid var(--border);
 }
 .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.nav-logo img { height: 48px; width: auto; object-fit: contain; }
+.nav-logo img { height: 48px; width: auto; object-fit: contain; filter: brightness(0) invert(1); }
+.sidebar-header img { filter: brightness(0) invert(1); }
 .nav-desktop-links {
   display: none;
 }
@@ -249,15 +250,15 @@ nav#mainNav.scrolled {
   background: linear-gradient(135deg, #100820 0%, #0d0d1a 40%, #0a1020 100%);
   overflow: hidden;
 }
-.hero-visual img {
+.hero-visual video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.92;
-  filter: saturate(1.05) contrast(1.1);
+  opacity: 0;
+  animation: fade-in 1.6s ease forwards;
 }
 .hero-visual::before {
   content: '';
@@ -610,11 +611,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:80
     <a href="#bfg"><i class="fas fa-book-open"></i> Bible Groups</a>
     <a href="#visit"><i class="fas fa-map-marker-alt"></i> Visit Us</a>
     <a href="#give"><i class="fas fa-heart"></i> Give</a>
-    <a href="https://online.whc.life/" target="_blank"><i class="fas fa-broadcast-tower"></i> Watch Live</a>
   </nav>
   <div class="sidebar-footer">
     <a href="https://v4.whc.life/donate" class="btn btn-primary" style="width:100%;justify-content:center;"><i class="fas fa-gift" style="margin-right:6px"></i> Give Online</a>
-    <a href="https://online.whc.life/" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:0"><i class="fas fa-broadcast-tower" style="margin-right:6px"></i> Watch Live</a>
     <div class="sidebar-socials">
       <a href="https://www.facebook.com/rodparsley" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/rodparsley" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -646,7 +645,7 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:80
       <input type="text" id="navSearchInput" placeholder="Connect" autocomplete="off">
       <div id="searchSuggestions"></div>
     </div>
-    <a href="https://online.whc.life/" target="_blank" class="nav-live">
+    <a href="https://www.youtube.com/@rodparsley/streams" target="_blank" class="nav-live">
       <span class="live-dot"></span> Watch Live
     </a>
     <a href="#give" class="nav-give">Give</a>
@@ -657,7 +656,9 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:80
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-visual">
-    <img src="https://ik.imagekit.io/vddpcxj7e/whc/Smiles.png?tr=f-auto,q-auto,w-1200" alt="Smiling community members" loading="lazy">
+    <video autoplay muted loop playsinline preload="auto" poster="https://static.wixstatic.com/media/0c8444_de1c0ef5954e4c6393d50cd300bf3b32f000.jpg/v1/fill/w_1920,h_1080,al_c,q_85,enc_avif,quality_auto/thumbnail.jpg">
+      <source src="https://video.wixstatic.com/video/0c8444_de1c0ef5954e4c6393d50cd300bf3b32/1080p/mp4/file.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="hero-content">
     <div class="hero-eyebrow">Welcome to The Harv</div>
@@ -665,7 +666,6 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:80
     <p class="hero-sub">Miracles. Breakthrough. Revival. A home for world-changers and a house of prayer and healing for the nations. Join Pastor Rod Parsley and the Harv family — on campus or online.</p>
     <div class="hero-actions">
       <a href="#visit" class="btn btn-primary">Plan Your Visit <i class="fas fa-arrow-right"></i></a>
-      <a href="https://online.whc.life/" target="_blank" class="btn btn-outline">Watch Live</a>
     </div>
   </div>
   <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
@@ -718,7 +718,6 @@ footer { background:var(--black); border-top:1px solid var(--border); padding:80
           <div class="service-card-tag">Wednesdays · 7:00 PM</div>
           <div class="service-card-title">Wisdom Wednesdays Live</div>
           <div class="service-card-desc">Midweek revival fire — deep study, praise, and breakthrough. Watch online from anywhere in the world.</div>
-          <span class="btn-ghost">Watch Live <i class="fas fa-arrow-right"></i></span>
         </div>
       </a>
       <a href="https://v4.whc.life/donate" class="service-card reveal reveal-d2">

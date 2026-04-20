@@ -85,8 +85,12 @@
   #sidebar { box-shadow: 8px 0 60px rgba(87,49,152,0.15); }
   .sidebar-nav a { color: var(--text-sub); }
   .sidebar-nav a:hover { color: var(--text); background: var(--purple-dim); }
-  .nav-link-item { color: var(--text); }
+  .nav-link-item { color: var(--text-sub); }
   .nav-link-item:hover { color: var(--text); }
+  #mainNav:not(.scrolled) .nav-link-item { color: rgba(235,228,255,0.88); }
+  #mainNav:not(.scrolled) .nav-link-item:hover { color: #fff; }
+  #mainNav.scrolled .nav-link-item { color: var(--text-sub); }
+  #mainNav.scrolled .nav-link-item:hover { color: var(--text); }
   .section-header h2,
   .about-text h2,
   .visit-info h2,
@@ -101,9 +105,10 @@
   .about-text p, .pastor-text p, .visit-info > p,
   .event-details, .service-card-desc, .connect-card p,
   .bfg-desc { color: var(--muted); }
-  .nav-search-pill { background: rgba(87,49,152,0.07); border-color: rgba(87,49,152,0.2); }
-  .nav-search-pill input { color: var(--text); }
-  .nav-search-pill input::placeholder { color: var(--muted); }
+  .nav-search-pill { background: rgba(87,49,152,0.07); border-color: #fff; }
+  .nav-search-pill input { color: #fff !important; }
+  .nav-search-pill i { color: #fff !important; }
+  .nav-search-pill input::placeholder { color: #fff !important; }
   .search-dropdown { background: var(--card); box-shadow: 0 16px 48px rgba(87,49,152,0.15); }
   .s-name { color: var(--text) !important; }
   .suggestion-item:hover { background: var(--purple-dim); }
@@ -127,10 +132,10 @@
   .hero-eyebrow { color: var(--purple-lighter); }
   .hero-sub { color: rgba(235,228,255,0.78); }
   /* Nav hamburger light mode */
-  .nav-hamburger { background: rgba(87,49,152,0.08); border-color: rgba(87,49,152,0.2); color: var(--text); }
+  .nav-hamburger { background: rgba(87,49,152,0.08); border-color: rgba(87,49,152,0.2); color: #fff !important; }
   .nav-hamburger:hover { background: var(--purple-dim); color: var(--purple); border-color: var(--border-hover); }
   /* Live button */
-  .nav-live { color: var(--text); }
+  .nav-live { color: #fff !important; }
   /* Give button stays purple */
   .ticker-label { color: #fff; }
   /* Footer logo */
@@ -365,13 +370,13 @@ a { text-decoration: none; color: inherit; }
 .nav-link-item {
   font-family: var(--font-cond); font-size: 13px; font-weight: 600;
   letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--white); padding: 8px 13px;
+  color: var(--muted); padding: 8px 13px;
   border-radius: var(--radius-sm);
   transition: color 0.2s, background 0.2s;
   cursor: pointer; border: none; background: none; display: block;
   white-space: nowrap;
 }
-.nav-link-item:hover { color: var(--white); background: var(--purple-dim); }
+.nav-link-item:hover { color: var(--text); background: var(--purple-dim); }
 
 /* "Menu" item in desktop nav — first item, styled identically to others */
 .nav-menu-trigger {
@@ -401,7 +406,7 @@ a { text-decoration: none; color: inherit; }
   width: 260px;
   box-shadow: 0 0 0 3px rgba(155,109,224,0.12);
 }
-.nav-search-pill i { color: var(--white); font-size: 13px; flex-shrink: 0; }
+.nav-search-pill i { color: var(--muted); font-size: 13px; flex-shrink: 0; }
 .nav-search-pill input {
   background: transparent; border: none;
   color: var(--text); font-family: var(--font-body); font-size: 13px;
@@ -1146,13 +1151,13 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 72
 }
 #lightbox-close {
   position: absolute; top: 18px; right: 22px;
-  background: rgba(255,255,255,0.08); border: 1px solid var(--border);
-  color: var(--white); font-size: 16px; cursor: pointer;
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2);
+  color: #fff; font-size: 16px; cursor: pointer;
   width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 50%; opacity: 0.8; transition: opacity var(--transition), background var(--transition);
+  border-radius: 50%; opacity: 0.85; transition: opacity var(--transition), background var(--transition);
 }
-#lightbox-close:hover { opacity: 1; background: rgba(87,49,152,0.35); }
+#lightbox-close:hover { opacity: 1; background: rgba(87,49,152,0.45); }
 
 /* ═══════════════════════════════════════════════════════════
    RESPONSIVE
@@ -1200,10 +1205,119 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 72
   .cta-times { flex-direction: column; align-items: center; }
   .mute-btn { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 13px; }
 }
-@media (max-width: 400px) {
-  .masonry-grid { column-count: 1; }
-  .hero-title { font-size: 34px; }
+/* ─── PAGE LOAD FADE ─── */
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+body { animation: page-in 0.5s ease forwards; }
+
+/* ─── ACTIVE NAV SECTION HIGHLIGHT ─── */
+.nav-link-item.active {
+  color: var(--text) !important;
+  background: var(--purple-dim);
+}
+
+/* ─── LIGHT MODE: section alternating backgrounds ─── */
+@media (prefers-color-scheme: light) {
+  .services  { background: var(--deep); }
+  .latest    { background: var(--deep); }
+  .pastor    { background: var(--deep); }
+  .bfg       { background: var(--deep); }
+  .cta-banner {
+    background:
+      linear-gradient(135deg, rgba(87,49,152,0.12) 0%, rgba(87,49,152,0.03) 50%, transparent 100%),
+      var(--deep);
+  }
+  /* Section labels readable in light */
+  .section-label { color: var(--purple); }
+  .section-label::before { background: var(--purple); }
+  /* Give section */
+  .give { background: radial-gradient(ellipse at 50% 0%, rgba(87,49,152,0.14) 0%, transparent 60%), var(--bg); }
+  /* Connect card number watermark - more visible in light */
+  .connect-num { color: rgba(87,49,152,0.07); }
+  /* BFG accent bar stays purple */
+  .bfg-card::before { background: var(--purple); }
+  /* Stats */
+  .p-stat .num { color: var(--purple); }
+  /* Cta-time text */
+  .cta-time .time { color: var(--text); }
+  /* Give card icon border */
+  .give-card:hover { box-shadow: 0 12px 36px rgba(87,49,152,0.12); }
+  /* Visit icon bg */
+  .visit-icon { background: var(--purple-dim); }
+  /* Playlist tag */
+  .playlist-tag, .service-card-tag, .event-tag, .bfg-meta-item { color: var(--purple); }
+  /* Search dropdown header in light */
+  .search-dropdown-header { color: var(--purple); }
+  /* Give section p */
+  .give > .container > p { color: var(--muted); }
+  /* CTA paragraph */
+  .cta-banner > .container > p { color: var(--muted); }
+  /* Ticker still white text on purple */
+  .times-item, .times-item span { color: #fff; }
+}
+
+/* ─── BACK TO TOP ─── */
+#backToTop {
+  position: fixed; bottom: 32px; right: 32px; z-index: 50;
+  width: 44px; height: 44px;
+  background: var(--purple); color: #fff;
+  border: none; border-radius: var(--radius-pill);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; cursor: pointer;
+  opacity: 0; transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease, background 0.2s;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(87,49,152,0.45);
+}
+#backToTop.visible {
+  opacity: 1; transform: translateY(0);
+  pointer-events: all;
+}
+#backToTop:hover { background: var(--purple-light); transform: translateY(-2px); }
+/* Keep it above hero scroll indicator but below sidebar */
+@media (max-width: 640px) {
+  #backToTop { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 14px; }
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--purple-dim);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-thumb:hover { background: var(--purple-light); }
+
+/* ─── FOCUS VISIBLE (accessibility) ─── */
+:focus-visible {
+  outline: 2px solid var(--purple-lighter);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible) { outline: none; }
+
+/* ─── TEXT SELECTION ─── */
+::selection {
+  background: rgba(87,49,152,0.35);
+  color: var(--text);
+}
+
+/* ─── SMOOTH SECTION TRANSITIONS ─── */
+section, footer, nav {
+  transition: background-color 0.35s ease;
+}
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  nav, #sidebar, #overlay, .mute-btn, #backToTop, .hero-scroll,
+  .times-bar, .hero-visual video { display: none !important; }
+  .hero { min-height: auto; height: auto; padding: 40px 0; }
+  body { background: #fff; color: #000; }
+}
+
 </style>
 </head>
 <body>
@@ -1341,10 +1455,10 @@ footer { background: var(--bg); border-top: 1px solid var(--border); padding: 72
       <a href="https://www.youtube.com/@rodparsley/streams" target="_blank" class="btn btn-outline">Watch Live</a>
     </div>
   </div>
-  <div class="hero-scroll" aria-hidden="true">
+  <!-- <div class="hero-scroll" aria-hidden="true">
     <span>Scroll</span>
     <div class="scroll-line"></div>
-  </div>
+  </div> -->
   <!-- Mute / unmute toggle -->
   <button class="mute-btn" id="muteBtn" aria-label="Unmute background video" title="Unmute video">
     <i class="fas fa-volume-mute" id="muteIcon" aria-hidden="true"></i>
@@ -1921,11 +2035,25 @@ function observeReveal() {
 }
 observeReveal();
 
-/* ─── NAV SCROLL ─────────────────────────────────────────── */
+/* ─── NAV SCROLL + ACTIVE SECTION ─────────────────────────── */
 const mainNav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => {
+const navLinkItems = document.querySelectorAll('.nav-links-row .nav-link-item[href^="#"]');
+const sections = ['about','sermons','events','ministries','bfg','visit','give'];
+
+function updateActiveNav() {
   mainNav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
+  // Active section highlight
+  let current = '';
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && el.getBoundingClientRect().top <= 90) current = '#' + id;
+  });
+  navLinkItems.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === current);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
 
 /* ─── SMOOTH SCROLL ──────────────────────────────────────── */
 document.addEventListener('click', e => {
@@ -2189,6 +2317,20 @@ function closeLightbox() {
 document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+/* ─── BACK TO TOP ─────────────────────────────────────────── */
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTopBtn.classList.toggle('visible', window.scrollY > 500);
+}, { passive: true });
+backToTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
+<!-- Back to top -->
+<button id="backToTop" aria-label="Back to top" title="Back to top">
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
+</button>
+
 </body>
 </html>

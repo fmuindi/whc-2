@@ -749,6 +749,85 @@
       background: var(--purple-dim);
     }
 
+    /* ─── SIDEBAR DROPDOWN MENU (Mobile) ─── */
+    .sidebar-dropdown-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-dropdown-trigger {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-cond);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-sub);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 100%;
+      text-align: left;
+    }
+
+    .sidebar-dropdown-trigger i:first-child {
+      width: 20px;
+      text-align: center;
+      color: var(--purple-lighter);
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-dropdown-trigger:hover {
+      color: var(--text);
+      background: var(--purple-dim);
+    }
+
+    .sidebar-dropdown-menu {
+      background: var(--purple-dim);
+      margin: 2px 8px 0 8px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      animation: slideDown 0.25s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        max-height: 0;
+      }
+      to {
+        opacity: 1;
+        max-height: 200px;
+      }
+    }
+
+    .sidebar-dropdown-submenu {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 20px 12px 42px !important;
+      color: var(--text-sub) !important;
+      transition: all 0.2s ease;
+      font-size: 13px !important;
+    }
+
+    .sidebar-dropdown-submenu i {
+      color: var(--purple-lighter);
+      font-size: 12px;
+    }
+
+    .sidebar-dropdown-submenu:hover {
+      color: var(--text) !important;
+      background: rgba(155, 109, 224, 0.2);
+      padding-left: 44px !important;
+    }
+
     .sidebar-divider {
       height: 1px;
       background: var(--border);
@@ -864,6 +943,94 @@
     .nav-link-item.active {
       color: var(--text) !important;
       background: var(--purple-dim);
+    }
+
+    /* ─── NAV DROPDOWN MENU (Desktop) ─── */
+    .nav-item-with-dropdown {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-dropdown-trigger {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 13px;
+    }
+
+    .nav-dropdown-trigger .dropdown-icon {
+      font-size: 10px;
+      transition: transform 0.3s ease;
+      margin-left: 2px;
+      opacity: 0.7;
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      min-width: 140px;
+      list-style: none;
+      margin-top: 6px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+      z-index: 50;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+      padding: 6px 0;
+    }
+
+    .nav-item-with-dropdown:hover .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-item-with-dropdown:hover .dropdown-icon {
+      transform: rotate(180deg);
+    }
+
+    .nav-dropdown-item {
+      padding: 10px 16px;
+      color: var(--text-sub);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: block;
+      white-space: nowrap;
+      font-family: var(--font-cond);
+    }
+
+    .nav-dropdown-item:hover {
+      color: var(--text);
+      background: var(--purple-dim);
+      padding-left: 18px;
+    }
+
+    .nav-dropdown-item:first-child {
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .nav-dropdown-menu {
+        background: var(--card);
+        border-color: var(--border);
+        box-shadow: 0 12px 32px rgba(72, 30, 140, 0.12);
+      }
+
+      .nav-dropdown-item:hover {
+        background: var(--purple-dim);
+      }
     }
 
     .nav-right {
@@ -3250,7 +3417,14 @@
       <ul class="sidebar-nav" role="list">
         <li><a href="#about" onclick="closeSidebar()"><i class="fas fa-church"></i> About</a></li>
         <li><a href="#sermons" onclick="closeSidebar()"><i class="fas fa-video"></i> Sermons</a></li>
-        <li><a href="#events" onclick="closeSidebar()"><i class="fas fa-calendar"></i> Events</a></li>
+        <li class="sidebar-dropdown-item">
+          <button class="sidebar-dropdown-trigger" onclick="toggleSidebarDropdown(event)" aria-expanded="false" aria-label="Toggle Events submenu">
+            <i class="fas fa-calendar"></i> Events <i class="fas fa-chevron-down dropdown-icon-sidebar" style="margin-left: auto; font-size: 10px; transition: transform 0.3s ease;"></i>
+          </button>
+          <ul class="sidebar-dropdown-menu" style="display: none; list-style: none; margin: 0; padding: 0;">
+            <li><a href="https://whc.life/vbs" target="_blank" class="sidebar-dropdown-submenu" onclick="closeSidebar()"><i class="fas fa-calendar-check"></i> (VBS)</a></li>
+          </ul>
+        </li>
         <li><a href="#ministries" onclick="closeSidebar()"><i class="fas fa-hands"></i> Ministries</a></li>
         <li><a href="#bfg" onclick="closeSidebar()"><i class="fas fa-users"></i> Bible Groups</a></li>
         <li><a href="#visit" onclick="closeSidebar()"><i class="fas fa-map-marker-alt"></i> Visit</a></li>
@@ -3291,7 +3465,12 @@
     <ul class="nav-links-row" role="list">
       <li><a href="#about" class="nav-link-item">About</a></li>
       <li><a href="#sermons" class="nav-link-item">Sermons</a></li>
-      <li><a href="#events" class="nav-link-item">Events</a></li>
+      <li class="nav-item-with-dropdown">
+        <a href="#events" class="nav-link-item nav-dropdown-trigger">Events <i class="fas fa-chevron-down dropdown-icon"></i></a>
+        <ul class="nav-dropdown-menu" role="list">
+          <li><a href="https://whc.life/vbs" target="_blank" class="nav-dropdown-item">(VBS)</a></li>
+        </ul>
+      </li>
       <li><a href="#ministries" class="nav-link-item">Ministries</a></li>
       <li><a href="#bfg" class="nav-link-item">Bible Groups</a></li>
       <li><a href="#visit" class="nav-link-item">Visit</a></li>
@@ -4130,6 +4309,28 @@
       overlay.classList.remove('active');
       document.body.classList.remove('no-scroll');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleSidebarDropdown(e) {
+      e.preventDefault();
+      const trigger = e.currentTarget;
+      const menu = trigger.nextElementSibling;
+      const icon = trigger.querySelector('.dropdown-icon-sidebar');
+      const isOpen = menu.style.display !== 'none';
+      
+      // Close other dropdowns
+      document.querySelectorAll('.sidebar-dropdown-menu').forEach(m => {
+        m.style.display = 'none';
+        m.previousElementSibling.setAttribute('aria-expanded', 'false');
+        m.previousElementSibling.querySelector('.dropdown-icon-sidebar').style.transform = 'rotate(0deg)';
+      });
+      
+      // Toggle current dropdown
+      if (!isOpen) {
+        menu.style.display = 'block';
+        trigger.setAttribute('aria-expanded', 'true');
+        icon.style.transform = 'rotate(180deg)';
+      }
     }
 
     hamburgerBtn.addEventListener('click', () => {
